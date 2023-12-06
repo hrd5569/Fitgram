@@ -1,24 +1,35 @@
-# README
+# Fitgram
+​
+## サイト概要
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### サイトテーマ
+​このアプリは、運動している人が自身の活動を発信するSNSです。</br>
+このアプリの目的は、ユーザーが日々の運動内容や成果を共有し、モチベーションを向上させることです。
 
-Things you may want to cover:
+### テーマを選んだ理由
+コロナ禍以降、私の身の回りでは健康のために運動を始める人が増え、その際に「継続ができない」、「何をしたら良いか分からない」という悩みを耳にしました。</br>
+実際に自身も筋トレを始めた当初に同じような悩みを抱えていたことを思い出し、この問題を解決できるサービスを作りたいと考えました。</br>
+その解決策として、運動について情報の発信と共有ができるSNSを作成することをテーマに選びました。
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### ターゲットユーザ
+- 自身の成果を共有し、モチベーションを維持したい人
+- 筋トレやランニングなど特定の運動に興味を持っている人
+- 健康的なライフスタイルを目指し、他の健康意識の高い人々とつながりたい人
+​
+### 主な利用シーン
+- ​ダイエットや筋トレをしたいが、中々続かない時
+- 同じ目的を持った人がどのように活動しているか知りたい時
+- 自身の活動を記録として残したい時
+## 設計書
+​
+## 開発環境
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+- IDE：Cloud9
+​
+## 使用素材
+- 状況に応じて都度記述する。
+-    ``
+-    `` 
