@@ -1,0 +1,2 @@
+class Commente < ApplicationRecord
+end
