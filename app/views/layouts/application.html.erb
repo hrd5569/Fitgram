@@ -14,7 +14,7 @@
   </head>
 
 <!--d-flexで要素をflexで管理、flex-columnで縦方向に並べ、vh-100で画面の100%の高さに配置-->
- <body class="d-flex flex-column vh-100">
+ <body class="d-flex flex-column min-vh-100">
     <header class="shadow-sm py-2">
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
@@ -57,9 +57,9 @@
       </nav>
     </header>
 
-  <body>
+  <main class="flex-grow-1 py-5">
     <%= yield %>
-  </body>
+  </main>
 
   <footer class="text-white pt-2 pb-1">
       <div class="container">

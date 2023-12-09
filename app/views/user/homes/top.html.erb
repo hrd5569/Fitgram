@@ -1,11 +1,23 @@
-<div class="container">
-  <p>あなたの熱意が</p>
-</div>
+<head>
+  <title>Fitgram</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-<div class="container">
-  <p>誰かを変える</p>
-</div>
+  <!--通常のCSSファイルを読み込むために使用される。-->
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <!--Webpackerを使用している場合に、JavaScriptとCSSを一緒にバンドルしたファイルを読み込むために使用される-->
+  <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
 
-<div class="container">
-  <p>たくさんの仲間と成長しよう</p>
+
+<div class="card" style="width: 18rem;">
+  <!-- 画像のパスを正確なものに変更してください -->
+  <img src="/Fitgram/app/assets/images/Fitgram.png" class="card-img-top rounded" alt="Image cap">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
 </div>

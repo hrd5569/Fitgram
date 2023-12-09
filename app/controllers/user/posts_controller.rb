@@ -16,9 +16,8 @@ class User::PostsController < ApplicationController
     end
   end
 
-  #↓kaminari入れないとエラー？
   def index
-    @post = Post.page(params[:page]).reverse_order
+    @posts = Post.page(params[:page]).reverse_order
   end
 
   def show
@@ -34,9 +33,9 @@ class User::PostsController < ApplicationController
 
   # 投稿データのストロングパラメータ
   private
-
-  def posts_params
-    params.require(:image).permit(:image, :image_title, :caption)
+  # requireの後に(:モデル名)を指定 permit()に許可するデータを記述
+  def post_params
+    params.require(:post).permit(:image, :image_title, :caption)
   end
 
 end
