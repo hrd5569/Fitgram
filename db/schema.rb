@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_12_08_053735) do
+ActiveRecord::Schema.define(version: 2023_12_09_100327) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -24,23 +24,23 @@ ActiveRecord::Schema.define(version: 2023_12_08_053735) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
-  create_table "commentes", force: :cascade do |t|
-    t.integer "user", null: false
-    t.integer "post", null: false
+  create_table "comments", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "post_id", null: false
     t.text "reaction_comment", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "favorites", force: :cascade do |t|
-    t.integer "user", null: false
-    t.integer "post", null: false
+    t.integer "user_id", null: false
+    t.integer "post_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "posts", force: :cascade do |t|
-    t.integer "user", null: false
+    t.integer "user_id", null: false
     t.string "image_title", null: false
     t.string "caption", null: false
     t.datetime "created_at", precision: 6, null: false
