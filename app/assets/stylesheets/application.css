@@ -13,3 +13,30 @@
  *= require_tree .
  *= require_self
  */
+ header {
+background: rgba( 255, 255, 255, 0.47 );
+box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+backdrop-filter: blur( 2px );
+-webkit-backdrop-filter: blur( 2px );
+}
+
+/*青と緑のグラデーション*/
+ body {
+  height: 200px;
+  width: 100%;
+  background-image: linear-gradient(32deg, rgba(144, 245, 154, 1), rgba(4, 202, 255, 1));
+}
+
+/*赤と黄色のグラデーション*/
+/*body {*/
+/*  background-image: linear-gradient(196deg, rgba(247, 93, 139, 1), rgba(254, 220, 64, 1));*/
+/*}*/
+
+
+
+footer {
+background: rgba( 208, 2, 27, 0.35 );
+box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+backdrop-filter: blur( 1px );
+-webkit-backdrop-filter: blur( 1px );
+}

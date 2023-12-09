@@ -3,7 +3,7 @@
     <div class="col-12 col-md-6 mx-auto">
 
       <div class="card">
-        <div class="card-header">
+        <div class="card-header text-center">
           <h3 class="m-0">Sign up</h3>
         </div>
         <div class="card-body">
@@ -11,8 +11,14 @@
           <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
             <%= render "user/shared/error_messages", resource: resource %>
 
-            <div class="form-group">
               <!-- f.label :ラベル名, "表示したい内容"でautofocus: trueが使用できる -->
+              <!--class: "form-control"フォームの構成要素に対して横幅を100%に設定-->
+             <div class="form-group">
+                <%= f.label :name, "ユーザー名" %>
+                <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control" %>
+             </div>
+
+            <div class="form-group">
               <%= f.label :email, "メールアドレス" %>
               <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
             </div>
@@ -31,7 +37,27 @@
             </div>
 
             <div class="form-group">
-              <%= f.submit "Sign up", class: "btn btn-outline-warning" %>
+              <%= f.label :age, "年齢" %>
+              <%= f.text_field :age, autofocus: true, autocomplete: "age", class: "form-control" %>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :height, "身長(cm)" %>
+              <%= f.number_field :height, autofocus: true, autocomplete: "height", class: "form-control" %>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :weight, "体重(kg)" %>
+              <%= f.number_field :weight, autofocus: true, autocomplete: "weight", class: "form-control" %>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :gender, "性別" %>
+              <%= f.select :gender, ["男性", "女性"], { prompt: "選択してください" }, class: "form-control" %>
+            </div>
+            
+            <div class="d-grid gap-2">
+              <%= f.submit "Sign up", class: "btn btn-warning btn-block" %>
             </div>
           <% end %>
 
