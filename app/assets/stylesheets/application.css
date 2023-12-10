@@ -45,12 +45,12 @@ footer {
   object-fit: cover;
 }
 
-/*.top {*/
-/*  display: inline-block;*/
-/*  font-family: "Roboto", sans-serif;*/
-/*  font-size: 4em;*/
-/*  font-weight: bold;*/
-/*  color: transparent;*/
-/*  background-image: linear-gradient(135deg, #fc00ff, #00dbde);*/
-/*  -webkit-background-clip: text;*/
-/*}*/
+.top {
+  display: inline-block;
+  font-family: "Roboto", sans-serif;
+  font-size: 4em;
+  font-weight: bold;
+  color: transparent;
+  background-image: linear-gradient(135deg, #fc00ff, #00dbde);
+  -webkit-background-clip: text;
+}
