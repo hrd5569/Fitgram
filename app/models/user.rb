@@ -12,11 +12,22 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
 
+    # 自分がフォローされる（被フォロー）側の関係性
+  has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
+  # 被フォロー関係を通じて参照→自分をフォローしている人
+  has_many :followers, through: :reverse_of_relationships, source: :follower
+
+  # 自分がフォローする（与フォロー）側の関係性
+  has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
+  # 与フォロー関係を通じて参照→自分がフォローしている人
+  has_many :followings, through: :relationships, source: :followed
+
   has_one_attached :profile_image
 
   # TODO: バリデーションで、身長・体重などは必須にする
   validates :height, presence: true
   validates :weight, presence: true
+  validates :name, length: { minimum: 2, maximum: 20 }, uniqueness: true
 
   def get_profile_image
     (profile_image.attached?) ? profile_image : 'no_image.jpg'
@@ -33,9 +44,15 @@ class User < ApplicationRecord
   def following?(user)
     followings.include?(user)
   end
-end
 
 
+  def get_profile_image(weight, height)
+    unless profile_image.attached?
+      file_path = Rails.root.join('app/assets/images/sample-author1.jpg')
+      profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+    end
+    profile_image.variant(resize_to_limit: [weight, height]).processed
+  end
 
   def bmi
     self.weight / ((self.height / 100) ** 2)
