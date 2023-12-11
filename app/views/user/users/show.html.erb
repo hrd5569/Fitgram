@@ -1,1 +1,26 @@
-<h1>ここはユーザーのマイページ</h1>
+<h1>投稿詳細</h1>
+
+<%= @user.name %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--ゲストユーザーが編集ボタンを押して情報を編集できないようにする-->
+
+<% if @user.email != "guest@example.com" %>
+  <div class="row">
+    <%= link_to "", edit_information_path(@user), class: "btn btn-outline-primary edit_information_#{@user.id}" %>
+  </div>
+<% end %>

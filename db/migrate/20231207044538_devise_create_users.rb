@@ -37,21 +37,21 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
       t.string :name, null: false
 
       # 身長 浮動小数 ビューにはcm←(string)をつける
-      t.float :height, null: false
+      t.float :height
 
       # 体重 浮動小数 表示するビューにはKg←(string)をつける
-      t.float :weight, null: false
+      t.float :weight
 
       # 年齢 今回は文字列にする
-      t.string :age, null: false
+      t.string :age
 
       # 性別
-      t.string :gender, null: false
+      t.string :gender
 
       # 会員のステータス
       t.boolean :is_active, null: false, default: true
 
-      t.timestamps null: false
+      t.timestamps
     end
 
     add_index :users, :email,                unique: true

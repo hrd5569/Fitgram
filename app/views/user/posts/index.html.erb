@@ -32,4 +32,11 @@
     </div>
   </div>
 
+  <!--↓ゲストログインの場合は(いいね、フォロー、コメント)ボタンがある投稿詳細ページに投稿画像をクリックしても遷移させない-->
+  <% if current_user.email != "guest@example.com" %>
+      <div class="row">
+        <%= link_to "編集",posts_path(current_user),class: "btn btn-outline-secondary fas fa-user-cog" %>
+      </div>
+  <% end %>
+
 </div>

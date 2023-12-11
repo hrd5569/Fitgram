@@ -89,10 +89,10 @@ ActiveRecord::Schema.define(version: 2023_12_09_104515) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.string "name", null: false
-    t.float "height", null: false
-    t.float "weight", null: false
-    t.string "age", null: false
-    t.string "gender", null: false
+    t.float "height"
+    t.float "weight"
+    t.string "age"
+    t.string "gender"
     t.boolean "is_active", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

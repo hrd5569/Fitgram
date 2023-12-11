@@ -8,16 +8,21 @@ Rails.application.routes.draw do
     sessions: 'user/sessions'
   }
 
+  # ゲストログイン時はusers/sessionsコントローラーに書いたguest_sign_inを実行
+  devise_scope :user do
+    post 'user/guest_sign_in', to: 'user/sessions#guest_sign_in'
+  end
+
   #scope moduleでURLとファイル構成を指定
   scope module: :user do
     # User関連
+    resources :users, only: [:show]
+    
     get '/about', to: 'homes#about', as: 'about'
     # users/editにするとdeviseのルーティングと重複するためinformationを付けている。
     # 会員情報の編集
     get 'users/information/edit', to: 'users#edit', as: 'edit_information'
     patch 'users/information', to: 'users#update', as: 'update_information'
-    # 会員のマイページ
-    get 'users/mypage/show', to: 'users#show', as: 'user_mypage'
 
     # 退会確認 checkアクション
     get 'users/check', to: 'users#check', as: 'check_unsubscribe'

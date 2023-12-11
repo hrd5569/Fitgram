@@ -4,7 +4,7 @@ class CreatePosts < ActiveRecord::Migration[6.1]
 
       #t.refarenceを使用すると他テーブルからカラムごと使用できる？
       #外部キーとして使用するUsersモデルのuser_idカラムを用意
-      t.integer :user_, null: false
+      t.integer :user_id, null: false
 
       #投稿画像のタイトル
       t.string :image_title, null: false
