@@ -7,7 +7,7 @@ class User::PostsController < ApplicationController
   # 投稿データの保存
   def create
     @post = Post.new(post_params)
-    @post.user_id = current_user.id
+    @post.user_id = current_user
 
     if @post.save
       redirect_to posts_path
