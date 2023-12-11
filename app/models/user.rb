@@ -9,8 +9,33 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, authentication_keys: [:name]
 
   has_many :posts, dependent: :destroy
+  has_many :comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
+
+  has_one_attached :profile_image
 
   # TODO: バリデーションで、身長・体重などは必須にする
+  validates :height, presence: true
+  validates :weight, presence: true
+
+  def get_profile_image
+    (profile_image.attached?) ? profile_image : 'no_image.jpg'
+  end
+
+  def follow(user)
+    relationships.create(followed_id: user.id)
+  end
+
+  def unfollow(user)
+    relationships.find_by(followed_id: user.id).destroy
+  end
+
+  def following?(user)
+    followings.include?(user)
+  end
+end
+
+
 
   def bmi
     self.weight / ((self.height / 100) ** 2)
@@ -22,7 +47,7 @@ class User < ApplicationRecord
     GUEST_USER_EMAIL = "guest@example.com"
     GUEST_USER_WEIGHT = 100
     GUEST_USER_HEIGHT = 100
-    
+
   def self.guest
     find_or_create_by!(email: GUEST_USER_EMAIL) do |user|
       user.password = SecureRandom.urlsafe_base64

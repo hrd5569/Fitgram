@@ -11,11 +11,12 @@ border-radius: 10px;
 border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
 
-// .home-text {
-//   display: inline-block;
-//   font-size: 3em;
-//   font-weight: bold;
-//   color: transparent;
-//   background-image: linear-gradient(135deg, #ffec61, #f321d7);
-//   -webkit-background-clip: text;
-// }
+.home-text {
+  display: inline-block;
+  font-family: "Roboto", sans-serif;
+  font-size: 3em;
+  font-weight: bold;
+  color: transparent;
+  background-image: linear-gradient(135deg, #fc00ff, #00dbde);
+  -webkit-background-clip: text;
+}
