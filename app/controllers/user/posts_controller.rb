@@ -7,7 +7,7 @@ class User::PostsController < ApplicationController
   # 投稿データの保存
   def create
     @post = Post.new(post_params)
-    @post.user_id = current_user
+    @post.user_id = current_user.id
 
     if @post.save
       redirect_to posts_path
@@ -22,7 +22,7 @@ class User::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @comment = Comment.new
+    @post_comments = Post.new
   end
 
   def destroy

@@ -1,42 +1,48 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-3">
-      <!--BMI他の人も見れるように-->
-      <%= render "layouts/sidebar", user: current_user %>
-    </div>
-    <div class="col-md-9">
-      <h2>All User Posts</h2>
-        <% @posts.each do |post| %>
-        <div class="card">
-          <div class="card-header">
-
-            <h5 class="m-0"><%= post.image_title %></h5>
-          </div>
-          <div class="card-body">
-            <%= image_tag post.image, class: "img-fluid post-card-img" %>
-            <div class="my-3">
-              <%= simple_format(post.caption, class: "m-0") %>
-            </div>
-          </div>
-          <div class="card-footer">
-            <%= post.user.name %>
-            <%= post.user.bmi %>
-            <div class="text-right">
-              <small class="text-black-50">
-                <%= post.created_at.in_time_zone("Asia/Tokyo").strftime("%Y/%m/%d %H:%M") %>
-              </small>
-            </div>
+<div class="card mb-3">
+  <div class="card-body">
+    <% @posts.each do |post| %>
+      <div class="d-flex justify-content-between">
+        <div class="d-flex align-items-center">
+          <!-- ユーザー画像 -->
+          <%= image_tag post.user.get_profile_image(30,30), class: "rounded-circle mr-2" %>
+          <!-- ユーザー名とフォロワー数 -->
+          <div>
+            <strong><%= post.user.name %></strong>
+            <p><small class="text-muted"><%= post.user.followers.count %> フォロワー</small></p>
           </div>
         </div>
+        <!-- フォローボタン -->
+        <% unless post.user == current_user %>
+          <% if current_user.following?(post.user) %>
+            <%= link_to 'フォロー解除', unfollow_user_path(post.user.id), method: :delete, class: "btn btn-outline-primary btn-sm" %>
+          <% else %>
+            <%= link_to 'フォローする', follow_user_path(post.user.id), method: :post, class: "btn btn-outline-primary btn-sm" %>
+          <% end %>
         <% end %>
-    </div>
-  </div>
-
-  <!--↓ゲストログインの場合は(いいね、フォロー、コメント)ボタンがある投稿詳細ページに投稿画像をクリックしても遷移させない-->
-  <% if current_user.email != "guest@example.com" %>
-      <div class="row">
-        <%= link_to "編集",posts_path(current_user),class: "btn btn-outline-secondary fas fa-user-cog" %>
       </div>
-  <% end %>
-
+      <!-- 投稿画像 -->
+      <%= image_tag post.get_image, class: "card-img-top" %>
+      <div class="card-body">
+        <!-- いいねとコメントボタン -->
+        <div class="d-flex">
+          <% favorite = post.favorites.find_by(user_id: current_user.id) %>
+          <% if favorite %>
+            <%= link_to favorite_path(favorite), method: :delete, class: "btn btn-outline-danger btn-sm mr-2" do %>
+              <i class="fas fa-heart"></i> いいね解除
+            <% end %>
+          <% else %>
+            <%= link_to favorites_path(post_id: post.id), method: :post, class: "btn btn-outline-danger btn-sm mr-2" do %>
+              <i class="fas fa-heart"></i> いいね
+            <% end %>
+          <% end %>
+          <!-- いいねの数 -->
+          <span class="mr-2"><%= post.favorites.count %> いいね</span>
+          <!-- コメントの数 -->
+          <span><%= post.comments.count %> コメント</span>
+        </div>
+        <!-- 投稿の説明文 -->
+        <p class="card-text mt-2"><%= post.caption %></p>
+      </div>
+    <% end %>
+  </div>
 </div>

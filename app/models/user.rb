@@ -11,8 +11,10 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :favorited_posts, through: :favorites, source: :post
 
-    # 自分がフォローされる（被フォロー）側の関係性
+
+  # 自分がフォローされる（被フォロー）側の関係性
   has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
   # 被フォロー関係を通じて参照→自分をフォローしている人
   has_many :followers, through: :reverse_of_relationships, source: :follower
@@ -22,6 +24,7 @@ class User < ApplicationRecord
   # 与フォロー関係を通じて参照→自分がフォローしている人
   has_many :followings, through: :relationships, source: :followed
 
+  # schemaに定義されていないが問題ないか？
   has_one_attached :profile_image
 
   # TODO: バリデーションで、身長・体重などは必須にする
@@ -33,18 +36,20 @@ class User < ApplicationRecord
     (profile_image.attached?) ? profile_image : 'no_image.jpg'
   end
 
-  def follow(user)
-    relationships.create(followed_id: user.id)
+  # 他のユーザーをフォローする
+  def follow(other_user)
+    followings << other_user unless self == other_user
   end
 
-  def unfollow(user)
-    relationships.find_by(followed_id: user.id).destroy
+  # フォローしているユーザーのフォローを解除する
+  def unfollow(other_user)
+    followings.delete(other_user)
   end
 
-  def following?(user)
-    followings.include?(user)
+  # あるユーザーをフォローしているかを確認する
+  def following?(other_user)
+    followings.include?(other_user)
   end
-
 
   def get_profile_image(weight, height)
     unless profile_image.attached?
@@ -73,6 +78,5 @@ class User < ApplicationRecord
       user.height = GUEST_USER_HEIGHT
     end
   end
-
 
 end

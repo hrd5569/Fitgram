@@ -8,3 +8,9 @@
 <p>
   <%= "AGE: #{user.age}" %>
 </p>
+
+<% if @user.email != "guest@example.com" %>
+  <div class="row">
+    <%= link_to "", edit_information_path(@user), class: "btn btn-outline-primary edit_information_#{@user.id}" %>
+  </div>
+<% end %>
