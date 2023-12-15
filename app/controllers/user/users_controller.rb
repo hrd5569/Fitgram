@@ -1,5 +1,6 @@
 class User::UsersController < ApplicationController
-  before_action :ensure_guest_user, only: [:edit]
+  before_action :authenticate_user!
+  before_action :ensure_guest_user, only: [:edit, :update]
 
  # ユーザーの情報をビューのレイアウトに表示
   def show
@@ -7,7 +8,7 @@ class User::UsersController < ApplicationController
     @posts = @user.posts.page(params[:page]).reverse_order
     @post_comments = Post.new
   end
-  
+
   def edit
     @user = User.find(params[:id])
   end
@@ -25,4 +26,9 @@ class User::UsersController < ApplicationController
         redirect_to root_path, notice: "ゲストユーザーのため実行できません。"
       end
     end
+
+  def user_params
+    params.require(:user).permit(:profile_image, :name, :age, :height, :weight, :gender)
+  end
+
 end

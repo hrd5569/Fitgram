@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   # 会員用
   devise_for :users, skip: [:passwords], controllers: {
     registrations: "user/registrations",
@@ -12,16 +11,16 @@ Rails.application.routes.draw do
 
   scope module: :user do
     # User関連
-    resources :users, only: [:show] do
+    resources :users, only: [:show, :update] do
       member do
         post 'follow', to: 'relationships#create', as: 'follow'
         delete 'unfollow', to: 'relationships#destroy', as: 'unfollow'
+        get 'users/:id/information/edit', to: 'users#edit', as: 'edit_user_information'
+        patch 'users/:id/information', to: 'users#update', as: 'update_user_information'
       end
     end
 
     get '/about', to: 'homes#about', as: 'about'
-    get 'users/information/edit', to: 'users#edit', as: 'edit_information'
-    patch 'users/information', to: 'users#update', as: 'update_information'
     get 'users/check', to: 'users#check', as: 'check_unsubscribe'
     patch 'users/withdraw', to: 'users#withdraw', as: 'withdraw_user_status'
     resources :posts do
