@@ -25,7 +25,7 @@ Rails.application.routes.draw do
     get 'users/check', to: 'users#check', as: 'check_unsubscribe'
     patch 'users/withdraw', to: 'users#withdraw', as: 'withdraw_user_status'
     resources :posts do
-    resources :comments, only: [:create, :destroy]
+      resources :comments, only: [:create, :destroy]
     end
     resources :favorites, only: [:create, :destroy]
   end

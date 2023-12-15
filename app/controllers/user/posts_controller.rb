@@ -1,5 +1,4 @@
 class User::PostsController < ApplicationController
-
   def new
     @post = Post.new
   end
@@ -22,7 +21,8 @@ class User::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @post_comments = Post.new
+    @new_comment = Comment.new  # 新しいコメント用のインスタンス
+    @comments = @post.comments  # 投稿に紐づくコメント
   end
 
   def destroy
@@ -31,11 +31,8 @@ class User::PostsController < ApplicationController
     redirect_to posts_path
   end
 
-  # 投稿データのストロングパラメータ
   private
-  # requireの後に(:モデル名)を指定 permit()に許可するデータを記述
   def post_params
     params.require(:post).permit(:image, :image_title, :caption)
   end
-
 end

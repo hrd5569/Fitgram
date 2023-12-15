@@ -24,7 +24,6 @@ class User < ApplicationRecord
   # 与フォロー関係を通じて参照→自分がフォローしている人
   has_many :followings, through: :relationships, source: :followed
 
-  # schemaに定義されていないが問題ないか？
   has_one_attached :profile_image
 
   # TODO: バリデーションで、身長・体重などは必須にする

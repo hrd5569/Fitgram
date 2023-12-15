@@ -1,69 +1,80 @@
-<h1>ここマイページ</h1>
-
-<div class="post-detail py-5 bg-light">
-  <% @posts.each do |post| %>
-    <div class="card w-75 mx-auto mt-4 shadow-lg">
-      <%= image_tag post.get_image, class: "card-img-top" %>
-      <div class="card-body">
-        <div class="row">
-          <div class="col-2">
-            <%= image_tag post.user.get_profile_image(100,100), class: "mt-3 rounded-circle" %>
-          </div>
-          <div class="col-10">
-            <p class="card-title">
-              <%= link_to post_path(post), class: "text-dark" do %>
-                <strong><i class="far fa-flag"></i> <span> <%= post.image_title %></span></strong>
-              <% end %>
-            </p>
-            <p class="card-title">説明：<%= post.caption %></p>
-            <span><i class="fas fa-user"></i> By <%= post.user.name %> ｜ </span>
-            <span><i class="fa fa-calendar"></i> <%= post.created_at.strftime('%Y/%m/%d') %> ｜ </span>
-            <span><i class="fa fa-comment"></i> <%= link_to "#{post.comments.count}", post_path(post), class: "text-dark" %> ｜ </span>
-            <% if post.favorited_by?(current_user) %>
-              <span>
-                <%= link_to favorite_path(post), class: "text-dark", method: :delete do %>
-                  <i class="fa fa-heart" aria-hidden="true"></i> <%= post.favorites.count %>
-                <% end %>
-              </span>
-            <% else %>
-              <span>
-                <%= link_to favorites_path, class: "text-dark", method: :post do %>
-                  <i class="fa fa-heart" aria-hidden="true"></i> <%= post.favorites.count %>
-                <% end %>
-              </span>
-            <% end %>
-            <% if post.user == current_user %>
-              <span> ｜ </span><%= link_to "削除", post_path(post), class: "text-dark", method: :delete %>
-            <% end %>
-          </div>
-        </div>
-        <hr>
-        <div class="comments card-text">
-          <h4 class="mt-3"><%= post.comments.count %>件のコメント</h4>
-          <% post.comments.each do |comment| %>
-            <div class="media border mb-3">
-              <%= image_tag comment.user.get_profile_image(60,60), class: "bd-placeholder-img align-self-center mx-3" %>
-              <div class="media-body ml-4 p-3">
-                <p><%= comment.created_at.strftime('%Y/%m/%d') %> <%= comment.comment %></p>
-                <% if comment.user == current_user %>
-                  <%= link_to "削除", comment_path(comment), method: :delete, class: "btn btn-danger pull-right" %>
-                <% end %>
-              </div>
-            </div>
-          <% end %>
-        </div>
-        <hr>
-        <div class="new-comment card-text">
-          <%= form_with(model: Comment.new, url: post_comments_path(post), local: true) do |f| %>
-            <%= f.hidden_field :post_id, value: post.id %>
-            <div class="form-group">
-              <label for="exampleFormControlTextarea1">コメントする</label>
-              <%= f.text_area :comment, rows: '5', class: "form-control", placeholder: "コメントをここに" %>
-            </div>
-            <%= f.submit "送信する", class: "btn btn-lg btn-info mt-2 float-right" %>
+<div class="container">
+  <div class="row">
+    <!-- サイドバー用のプロフィール -->
+    <div class="col-md-4">
+      <div class="card">
+        <img src="<%= @user.get_profile_image(30,30) %>" alt="プロフィール画像" class="card-img-top">
+        <div class="card-body">
+          <h5 class="card-title"><%= @user.name %></h5>
+          <p class="card-text">BMI: <%= @user.bmi %></p>
+          <p class="card-text">
+            <strong>フォロー数:</strong> <%= @user.followings.count %>
+          </p>
+          <p class="card-text">
+            <strong>フォロワー数:</strong> <%= @user.followers.count %>
+          </p>
+          <% if current_user != @user %>
+            <%= render "relationships/btn", user: @user %>
+          <% else %>
+            <%= link_to "プロフィール編集", edit_information_path(@user), class: "btn btn-outline-secondary btn-block" %>
           <% end %>
         </div>
       </div>
     </div>
-  <% end %>
+
+<div class="col-md-8">
+  <div class="post-detail py-5 bg-light">
+    <% @posts.each do |post| %>
+      <div class="card w-75 mx-auto mt-4 shadow-lg">
+        <%= image_tag post.get_image, class: "card-img-top" %>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-2">
+              <%= image_tag post.user.get_profile_image(100,100), class: "mt-3 rounded-circle" %>
+            </div>
+            <div class="col-10">
+              <p class="card-title">
+                <%= link_to post_path(post), class: "text-dark" do %>
+                  <strong><i class="far fa-flag"></i> <span> <%= post.image_title %></span></strong>
+                <% end %>
+              </p>
+              <p class="card-title">説明：<%= post.caption %></p>
+              <span><i class="fas fa-user"></i> By <%= post.user.name %> ｜ </span>
+              <span><i class="fa fa-calendar"></i> <%= post.created_at.strftime('%Y/%m/%d') %> ｜ </span>
+              <span><i class="fa fa-comment"></i> <%= link_to "#{post.comments.count}", post_path(post), class: "text-dark" %> ｜ </span>
+              <% if post.favorited_by?(current_user) %>
+                <span>
+                  <%= link_to favorite_path(post), class: "text-dark", method: :delete do %>
+                    <i class="fa fa-heart" aria-hidden="true"></i> <%= post.favorites.count %>
+                  <% end %>
+                </span>
+              <% else %>
+                <span>
+                  <%= link_to favorites_path, class: "text-dark", method: :post do %>
+                    <i class="fa fa-heart" aria-hidden="true"></i> <%= post.favorites.count %>
+                  <% end %>
+                </span>
+              <% end %>
+              <% if post.user == current_user %>
+                <span> ｜ </span><%= link_to "削除", post_path(post), class: "text-dark", method: :delete %>
+              <% end %>
+            </div>
+          </div>
+          <hr>
+          <div class="comments card-text">
+            <h4 class="mt-3"><%= post.comments.count %>件のコメント</h4>
+            <% post.comments.each do |comment| %>
+              <div class="media border mb-3">
+                <%= image_tag comment.user.get_profile_image(60,60), class: "bd-placeholder-img align-self-center mx-3" %>
+                <div class="media-body ml-4 p-3">
+                  <p><%= comment.created_at.strftime('%Y/%m/%d') %> <%= comment.reaction_comment %></p>
+                </div>
+              </div>
+            <% end %>
+          </div>
+          <hr>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>

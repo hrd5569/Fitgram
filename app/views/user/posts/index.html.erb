@@ -1,47 +1,51 @@
-<div class="card mb-3">
+<div class="card mb-3 bg-transparent ">
   <div class="card-body">
     <% @posts.each do |post| %>
-      <div class="d-flex justify-content-between">
-        <div class="d-flex align-items-center">
-          <!-- ユーザー画像 -->
-          <%= image_tag post.user.get_profile_image(30,30), class: "rounded-circle mr-2" %>
-          <!-- ユーザー名とフォロワー数 -->
-          <div>
-            <strong><%= post.user.name %></strong>
-            <p><small class="text-muted"><%= post.user.followers.count %> フォロワー</small></p>
+      <div class="mb-5 bg-white">
+        <div class="d-flex justify-content-between">
+          <div class="d-flex align-items-center">
+            <!-- ユーザー画像 -->
+            <%= image_tag post.user.get_profile_image(30,30), class: "rounded-circle mr-2" %>
+            <!-- ユーザー名とフォロワー数 -->
+            <div>
+              <strong><%= post.user.name %></strong>
+              <p><small class="text-muted"><%= post.user.followers.count %> フォロワー</small></p>
+            </div>
           </div>
-        </div>
-        <!-- フォローボタン -->
-        <% unless post.user == current_user %>
-          <% if current_user.following?(post.user) %>
-            <%= link_to 'フォロー解除', unfollow_user_path(post.user.id), method: :delete, class: "btn btn-outline-primary btn-sm" %>
-          <% else %>
-            <%= link_to 'フォローする', follow_user_path(post.user.id), method: :post, class: "btn btn-outline-primary btn-sm" %>
+          <!-- フォローボタン -->
+          <% unless post.user == current_user %>
+            <% if current_user.following?(post.user) %>
+              <%= link_to 'フォロー解除', unfollow_user_path(post.user.id), method: :delete, class: "btn btn-outline-primary btn-sm" %>
+            <% else %>
+              <%= link_to 'フォローする', follow_user_path(post.user.id), method: :post, class: "btn btn-outline-primary btn-sm" %>
+            <% end %>
           <% end %>
+        </div>
+        <!-- 投稿画像 -->
+        <%= link_to post_path(post) do %>
+          <%= image_tag post.get_image, class: "card-img-top" %>
         <% end %>
-      </div>
-      <!-- 投稿画像 -->
-      <%= image_tag post.get_image, class: "card-img-top" %>
-      <div class="card-body">
-        <!-- いいねとコメントボタン -->
-        <div class="d-flex">
-          <% favorite = post.favorites.find_by(user_id: current_user.id) %>
-          <% if favorite %>
-            <%= link_to favorite_path(favorite), method: :delete, class: "btn btn-outline-danger btn-sm mr-2" do %>
-              <i class="fas fa-heart"></i> いいね解除
+        <div class="card-body">
+          <!-- いいねとコメントボタン -->
+          <div class="d-flex">
+            <% favorite = post.favorites.find_by(user_id: current_user.id) %>
+            <% if favorite %>
+              <%= link_to favorite_path(favorite), method: :delete, class: "btn btn-outline-danger btn-sm mr-2" do %>
+                <i class="fas fa-heart"></i> いいね解除
+              <% end %>
+            <% else %>
+              <%= link_to favorites_path(post_id: post.id), method: :post, class: "btn btn-outline-danger btn-sm mr-2" do %>
+                <i class="fas fa-heart"></i> いいね
+              <% end %>
             <% end %>
-          <% else %>
-            <%= link_to favorites_path(post_id: post.id), method: :post, class: "btn btn-outline-danger btn-sm mr-2" do %>
-              <i class="fas fa-heart"></i> いいね
-            <% end %>
-          <% end %>
-          <!-- いいねの数 -->
-          <span class="mr-2"><%= post.favorites.count %> いいね</span>
-          <!-- コメントの数 -->
-          <span><%= post.comments.count %> コメント</span>
+            <!-- いいねの数 -->
+            <span class="mr-2"><%= post.favorites.count %> いいね</span>
+            <!-- コメントの数 -->
+            <span><%= post.comments.count %> コメント</span>
+          </div>
+          <!-- 投稿の説明文 -->
+          <p class="card-text mt-2"><%= post.caption %></p>
         </div>
-        <!-- 投稿の説明文 -->
-        <p class="card-text mt-2"><%= post.caption %></p>
       </div>
     <% end %>
   </div>
