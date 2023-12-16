@@ -1,4 +1,6 @@
 class User::PostsController < ApplicationController
+  before_action :authenticate_user!
+
   def new
     @post = Post.new
   end
@@ -30,6 +32,15 @@ class User::PostsController < ApplicationController
     @post.destroy
     redirect_to posts_path
   end
+
+  def search
+    @posts = Post.search(params[:name], params[:caption])
+  end
+
+  def favorites
+    @favorites_posts = current_user.favorited_posts.page(params[:page]).reverse_order
+  end
+
 
   private
   def post_params

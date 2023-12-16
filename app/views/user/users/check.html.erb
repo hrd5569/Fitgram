@@ -1,0 +1,5 @@
+<h1>退会確認</h1>
+<p>本当に退会しますか？退会するとすべてのデータが失われます。</p>
+
+<%= link_to '退会する', withdraw_user_path, method: :patch, data: { confirm: '本当に退会しますか？' }, class: 'btn btn-danger' %>
+<%= link_to 'キャンセル', user_path(current_user), class: 'btn btn-secondary' %>

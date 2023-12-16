@@ -15,18 +15,30 @@ Rails.application.routes.draw do
       member do
         post 'follow', to: 'relationships#create', as: 'follow'
         delete 'unfollow', to: 'relationships#destroy', as: 'unfollow'
-        get 'users/:id/information/edit', to: 'users#edit', as: 'edit_user_information'
-        patch 'users/:id/information', to: 'users#update', as: 'update_user_information'
+        get 'information/edit', to: 'users#edit', as: 'edit_user_information'
+        patch 'information', to: 'users#update', as: 'update_user_information'
+        patch 'users/withdraw', to: 'users#withdraw', as: 'withdraw_user_status'
+      end
+
+      # ユーザー検索機能のルーティングを追加
+      collection do
+        get 'search', to: 'users#search', as: 'search_users'
       end
     end
 
+    # 投稿の検索機能
+    get 'posts/search', to: 'posts#search', as: 'search_posts'
+
+    # いいねした投稿一覧表示のルーティング
+    get 'posts/favorites', to: 'posts#favorites', as: 'favorite_posts'
+
+    # その他のルーティング
     get '/about', to: 'homes#about', as: 'about'
     get 'users/check', to: 'users#check', as: 'check_unsubscribe'
-    patch 'users/withdraw', to: 'users#withdraw', as: 'withdraw_user_status'
     resources :posts do
       resources :comments, only: [:create, :destroy]
     end
-    resources :favorites, only: [:create, :destroy]
+    resources :favorites, only: [:create, :destroy, :index]
   end
 
   # 管理者用

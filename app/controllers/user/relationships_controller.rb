@@ -4,7 +4,7 @@ class User::RelationshipsController < ApplicationController
     other_user = User.find(params[:id])
     current_user.follow(other_user)
     # リダイレクトやフラッシュメッセージなどの処理
-    redirect_to posts_path
+    redirect_back(fallback_location: root_path)
   end
 
   # フォロー解除する
@@ -12,6 +12,6 @@ class User::RelationshipsController < ApplicationController
     other_user = User.find(params[:id])
     current_user.unfollow(other_user)
     # リダイレクトやフラッシュメッセージなどの処理
-    redirect_to posts_path
+    redirect_back(fallback_location: root_path)
   end
 end

@@ -42,7 +42,6 @@ class User::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
   # ユーザーのサインアップ時にemailとパスワード以外の値を登録できるようにする
-  # emailの許可は必要？
   def configure_sign_up_params
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :email, :height, :weight, :age, :gender])
   end

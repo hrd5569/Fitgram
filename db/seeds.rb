@@ -10,14 +10,14 @@
 #配列は[0,1,2,3]
 #ハッシュは{ key: "値"}
 admins = [
-  {email: "admin@example.com", password: "passw@rd"},
+  {email: "admin@example.com", password: "password"},
 ]
 #admins.each doでadminというブロック変数にadminsの値を順番に代入
 #Adminモデルのデータベースから()内の引数で配列化したハッシュのkey: 値を
 #find_or_create_byで一致するものがあればそのレコードが取得されて
 #一致するものがない場合は、新しいレコードが作成される。
 #同じデータががすでにデータベースに存在している場合、
-#新たに作成されることなく既存のデータが再利用できる？
+#新たに作成されることなく既存のデータが再利用できる。
 #admin[:email]これは何のどの部分？
 admins.each do |admin|
   Admin.find_or_create_by(email: admin[:email]) do |a|

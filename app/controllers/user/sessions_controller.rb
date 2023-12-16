@@ -17,7 +17,7 @@ class User::SessionsController < Devise::SessionsController
   # def destroy
   #   super
   # end
-  
+
   #ゲストユーザーはマイページ画面に遷移
   def guest_sign_in
     user = User.guest
@@ -25,7 +25,7 @@ class User::SessionsController < Devise::SessionsController
 
     redirect_to user_path(user), notice: "guestuserでログインしました。"
   end
-  
+
    protected
 
   # If you have extra params to permit, append them to the sanitizer.
@@ -35,7 +35,7 @@ class User::SessionsController < Devise::SessionsController
 
    #ログイン後のページ遷移先
    def after_sign_in_path_for(resource)
-     super(resource)
+    posts_path
    end
 
    #ログアウト後のページ遷移先

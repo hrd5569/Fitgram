@@ -19,6 +19,16 @@ class User::UsersController < ApplicationController
     redirect_to user_path(@user.id)
   end
 
+  def search
+    @posts = Post.search(params[:name], params[:caption])
+  end
+
+  def withdraw
+    @user = User.find(params[:id])
+    @user.update(is_active: false)
+    reset_session # ユーザーセッションをリセット
+    redirect_to root_path, notice: '退会処理が完了しました。'
+  end
 
   private
     def ensure_guest_user
