@@ -13,7 +13,7 @@
         <div class="d-flex justify-content-between">
           <div class="d-flex align-items-center">
             <!-- ユーザー画像 -->
-            <%= image_tag post.user.get_profile_image(30,30), class: "rounded-circle mr-2" %>
+            <%= image_tag post.user.get_profile_image(30,30), size: "50x50", class: "rounded-circle mr-2" %>
             <!-- ユーザー名とフォロワー数 -->
             <div>
               <strong><%= post.user.name %></strong>

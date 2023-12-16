@@ -24,7 +24,7 @@ header {
 body {
  /*height: 200px;*/
  /*width: 100%;*/
- background-image: linear-gradient(32deg, rgba(144, 245, 154, 0.7), rgba(4, 202, 255, 0.7) 100%),url(test_img.jpg);
+ background-image: linear-gradient(32deg, rgba(144, 245, 154, 0.7), rgba(4, 202, 255, 0.7) 100%),image-url(test_img.jpg);
 }
 
 /*赤と黄色のグラデーション*/

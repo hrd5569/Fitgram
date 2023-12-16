@@ -3,7 +3,7 @@
     <!-- サイドバー用のプロフィール -->
     <div class="col-md-4">
       <div class="card">
-        <%= image_tag @user.get_profile_image(200, 200), alt: "プロフィール画像", class: "card-img-top rounded-circle mr-2", size: "250x250" %>
+        <%= image_tag @user.get_profile_image(30, 30), alt: "プロフィール画像", class: "card-img-top rounded-circle mr-2", size: "200x300" %>
         <div class="card-body">
           <h5 class="card-title"><%= @user.name %></h5>
           <p class="card-text">BMI: <%= @user.bmi %></p>
