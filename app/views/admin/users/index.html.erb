@@ -1,0 +1,36 @@
+<h1>ユーザー一覧</h1>
+
+<%= form_with(url: admin_users_path, method: :get, local: true) do |form| %>
+  <%= form.label :name, 'ユーザー名で検索:' %>
+  <%= form.text_field :name, value: params[:name] %>
+  <%= form.submit '検索' %>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>プロフィール画像</th>
+      <th>ユーザー名</th>
+      <th>メールアドレス</th>
+      <th>身長</th>
+      <th>体重</th>
+      <th>年齢</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td>
+          <%= link_to image_tag(user.get_profile_image(90, 90)), admin_user_path(user) %>
+        </td>
+        <td><%= user.name %></td>
+        <td><%= user.email %></td>
+        <td><%= user.height %></td>
+        <td><%= user.weight %></td>
+        <td><%= user.age %></td>
+        <td><%= link_to '編集', admin_user_path(user) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

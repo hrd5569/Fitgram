@@ -1,0 +1,31 @@
+<h1><%= @user.name %> の情報を編集</h1>
+
+<%= form_with model: @user, url: admin_user_path(@user), method: :patch, local: true do |form| %>
+  <div>
+    <%= form.label :name, '名前' %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :email, 'メールアドレス' %>
+    <%= form.email_field :email %>
+  </div>
+
+  <div>
+    <%= form.label :height, '身長' %>
+    <%= form.number_field :height %>
+  </div>
+
+  <div>
+    <%= form.label :weight, '体重' %>
+    <%= form.number_field :weight %>
+  </div>
+
+  <div>
+    <%= form.label :age, '年齢' %>
+    <%= form.text_field :age %>
+  </div>
+
+  <%= form.submit '更新' %>
+  <%= link_to '戻る', admin_user_path(@user) %>
+<% end %>
