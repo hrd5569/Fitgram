@@ -20,7 +20,7 @@ class Admin::SessionsController < Devise::SessionsController
 
   # ログイン後のページ遷移先
   def after_sign_in_path_for(resource)
-    super(resource)
+      admin_users_path
   end
 
   # ログアウト後のページ遷移先
