@@ -1,32 +1,41 @@
-<h1><%= @user.name %> の詳細情報</h1>
+<div class="container">
+  <h1 class="text-center mb-4"><%= @user.name %> の詳細情報</h1>
 
-<p>
-  <strong>名前:</strong>
-  <%= @user.name %>
-</p>
+  <div class="mb-3 text-center">
+    <strong>名前:</strong>
+    <p><%= @user.name %></p>
+  </div>
 
-<p>
-  <strong>メールアドレス:</strong>
-  <%= @user.email %>
-</p>
+  <div class="mb-3 text-center">
+    <strong>メールアドレス:</strong>
+    <p><%= @user.email %></p>
+  </div>
 
-<p>
-  <strong>身長:</strong>
-  <%= @user.height %>
-</p>
+  <div class="mb-3 text-center">
+    <strong>身長:</strong>
+    <p><%= @user.height %></p>
+  </div>
 
-<p>
-  <strong>体重:</strong>
-  <%= @user.weight %>
-</p>
+  <div class="mb-3 text-center">
+    <strong>体重:</strong>
+    <p><%= @user.weight %></p>
+  </div>
 
-<p>
-  <strong>年齢:</strong>
-  <%= @user.age %>
-</p>
+  <div class="mb-3 text-center">
+    <strong>年齢:</strong>
+    <p><%= @user.age %></p>
+  </div>
 
-<%= link_to '編集', edit_admin_user_path(@user) %>
+  <div class="mb-3 text-center">
+    <strong>性別:</strong>
+    <p><%= @user.gender %></p>
+  </div>
 
-<%= link_to '退会', admin_user_path(@user), method: :delete, data: { confirm: '本当に削除しますか？' } %>
-
-<%= link_to '戻る', admin_users_path(@user) %>
+  <div class="text-center">
+    <div class="btn-group" role="group" aria-label="User Actions">
+      <%= link_to '編集', edit_admin_user_path(@user), class: 'btn btn-primary mb-1' %>
+      <%= link_to '戻る', admin_users_path, class: 'btn btn-primary mb-1 ml-1' %>
+      <%= link_to '退会', admin_user_path(@user), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-danger mb-1 ml-5' %>
+    </div>
+  </div>
+</div>

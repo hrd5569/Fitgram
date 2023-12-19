@@ -48,7 +48,11 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get '', to: 'homes#top', as: '/'
-    resources :users, only: [:index, :edit, :show, :update, :destroy]
+    resources :users, only: [:index, :edit, :show, :update, :destroy] do
+      collection do
+        get 'search', to: 'users#search' # 検索用のルートを追加
+      end
+    end
     resources :posts, only: [:destroy]
     resources :comments, only: [:destroy]
   end

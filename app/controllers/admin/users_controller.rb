@@ -6,11 +6,20 @@ class Admin::UsersController < ApplicationController
     @users = User.all
   end
 
+  def search
+    # 検索パラメータを使用してユーザーを検索
+    @users = User.search_by_name(params[:name])
+    render :index # 検索結果を index ビューで表示
+  end
+
   def show
     @user
+    # @user は set_user before_action によってセットされる
   end
 
   def edit
+    @user
+    # @user は set_user before_action によってセットされる
   end
 
   def update

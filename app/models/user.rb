@@ -58,7 +58,7 @@ class User < ApplicationRecord
 
   # BMI計算メソッド
   def bmi
-    self.weight / ((self.height / 100) ** 2)
+    self.weight / ((self.height / 100) ** 2).floor
   end
 
   # ゲストログインメソッド

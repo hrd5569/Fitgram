@@ -17,8 +17,7 @@
       <th class="px-3">身長</th>
       <th class="px-3">体重</th>
       <th class="px-3">年齢</th>
-      <th class="px-3">性別</th>
-      <th class="px-3"></th>
+      <th class="px-3">操作</th>
     </tr>
   </thead>
 
@@ -33,7 +32,6 @@
         <td class="px-3"><%= user.height %></td>
         <td class="px-3"><%= user.weight %></td>
         <td class="px-3"><%= user.age %></td>
-        <td class="px-3"><%= user.gender %></td>
         <td class="px-3"><%= link_to '編集', admin_user_path(user), class: 'btn btn-sm btn-primary' %></td>
       </tr>
     <% end %>

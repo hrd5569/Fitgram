@@ -8,13 +8,4 @@ class Admin < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, authentication_keys: [:email]
 
-  # ユーザー検索用のクラスメソッド
-  def self.search_for_admin(name)
-    if name.present?
-      where('name LIKE ?', "%#{name}%")
-    else
-      all
-    end
-  end
-
 end

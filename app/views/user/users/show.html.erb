@@ -3,15 +3,20 @@
     <!-- サイドバー用のプロフィール -->
     <div class="col-md-4">
       <div class="card">
-        <%= image_tag @user.get_profile_image(30, 30), alt: "プロフィール画像", class: "card-img-top rounded-circle mr-2", size: "200x300" %>
-        <div class="card-body">
+        <%= image_tag @user.get_profile_image(300, 300), alt: "プロフィール画像", class: "card-img-top rounded-circle", size: "300x300" %>
+        <div class="card-body text-center">
           <h5 class="card-title"><%= @user.name %></h5>
-          <p class="card-text">BMI: <%= @user.bmi %></p>
+          <p class="card-text">
+            <strong>BMI:</strong> <%= @user.bmi %>
+          </p>
           <p class="card-text">
             <strong>フォロー数:</strong> <%= @user.followings.count %>
           </p>
           <p class="card-text">
             <strong>フォロワー数:</strong> <%= @user.followers.count %>
+          </p>
+          <p class="card-text">
+            <strong>いいねの数:</strong> <%= @user.favorites.count %>
           </p>
           <% if current_user != @user %>
             <%= render "relationships/btn", user: @user %>
@@ -35,7 +40,7 @@
             <div class="col-10">
               <p class="card-title">
                 <%= link_to post_path(post), class: "text-dark" do %>
-                  <strong><i class="far fa-flag"></i> <span> <%= post.image_title %></span></strong>
+                  <strong><i class="far fa-flag"></i>タイトル:<span> <%= post.image_title %></span></strong>
                 <% end %>
               </p>
               <p class="card-title">説明：<%= post.caption %></p>
@@ -65,7 +70,7 @@
             <h4 class="mt-3"><%= post.comments.count %>件のコメント</h4>
             <% post.comments.each do |comment| %>
               <div class="media border mb-3">
-                <%= image_tag comment.user.get_profile_image(50,50), class: "bd-placeholder-img align-self-center mx-3 rounded-circle mr-2", size: "70x70" %>
+                <%= image_tag comment.user.get_profile_image(50,50), class: "bd-placeholder-img align-self-center mx-2 rounded-circle mr-1", size: "70x70" %>
                 <div class="media-body ml-4 p-3">
                   <p><%= comment.created_at.strftime('%Y/%m/%d') %> <%= comment.reaction_comment %></p>
                 </div>

@@ -3,66 +3,83 @@
 <head>
   <title>Fitgram</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
+  <script src="https://kit.fontawesome.com/fc5c603cd5.js" crossorigin="anonymous"></script>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
-
-  <!-- 通常のCSSファイルを読み込むために使用される -->
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-  <!-- Webpackerを使用している場合にJavaScriptとCSSを一緒にバンドルしたファイルを読み込むために使用される -->
   <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
 
 <body class="d-flex flex-column min-vh-100">
-  <header class="shadow-sm py-2">
+  <header class="shadow-sm">
     <nav class="navbar navbar-expand-lg navbar-light">
-      <div class="container">
-        <a class="navbar-brand" href="<%= root_path %>" style="padding: 0;">
-          <%= image_tag 'logo.jpg', alt: "Fitgram", style: "border-radius: 50%; width: 20%; height: 20%; object-fit: cover;" %>
+      <div class="container-fluid">
+        <a class="navbar-brand" href="<%= root_path %>">
+          <%= image_tag 'logo.jpg', alt: "Fitgram", class: "rounded-circle", style: "width: 14%; height: 14%; object-fit: cover;" %>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul class="navbar-nav ml-auto">
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+          <ul class="navbar-nav">
             <% if user_signed_in? %>
-              <!-- 一般ユーザー用のリンク -->
               <li class="nav-item">
-                <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-dark' %>
+                <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link text-dark' do %>
+                  <i class="fa-solid fa-right-to-bracket"></i> ログアウト
+                <% end %>
               </li>
               <li class="nav-item">
-                <%= link_to '投稿一覧', posts_path, class: 'nav-link text-dark' %>
+                <%= link_to posts_path, class: 'nav-link text-dark' do %>
+                  <i class="fa-solid fa-list"></i> 投稿一覧
+                <% end %>
               </li>
               <li class="nav-item">
-                <%= link_to 'いいね一覧', favorite_posts_path, class: 'nav-link text-dark' %>
+                <%= link_to favorite_posts_path, class: 'nav-link text-dark' do %>
+                  <i class="fa-solid fa-heart"></i> いいね一覧
+                <% end %>
               </li>
               <li class="nav-item">
-                <%= link_to '投稿フォーム', new_post_path, class: 'nav-link text-dark' %>
+                <%= link_to new_post_path, class: 'nav-link text-dark' do %>
+                  <i class="fa-solid fa-pen"></i> 投稿フォーム
+                <% end %>
               </li>
               <li class="nav-item">
-                <%= link_to 'マイページ', user_path(current_user.id), class: 'nav-link text-dark' %>
+                <%= link_to user_path(current_user.id), class: 'nav-link text-dark' do %>
+                  <i class="fa-solid fa-user"></i> マイページ
+                <% end %>
               </li>
             <% elsif admin_signed_in? %>
-              <!-- 管理者用のリンク -->
               <li class="nav-item">
-                <%= link_to '会員一覧', admin_users_path, class: 'nav-link text-dark' %>
+                <%= link_to admin_users_path, class: 'nav-link text-dark' do %>
+                  <i class="fa-solid fa-user"></i> 会員一覧
+                <% end %>
               </li>
               <li class="nav-item">
-                <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' %>
+                <%= link_to destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' do %>
+                  <i class="fa-solid fa-right-to-bracket"></i> ログアウト
+                <% end %>
               </li>
             <% else %>
-              <!-- 未ログイン時のリンク -->
               <li class="nav-item">
-                <%= link_to "Home", root_path, class: 'nav-link text-dark' %>
+                <%= link_to root_path, class: 'nav-link text-dark' do %>
+                  <i class="fa-solid fa-house"></i> Home
+                <% end %>
               </li>
               <li class="nav-item">
-                <%= link_to "About", about_path, class: 'nav-link text-dark' %>
+                <%= link_to about_path, class: 'nav-link text-dark' do %>
+                  <i class="fa-solid fa-address-card"></i> About
+                <% end %>
               </li>
               <li class="nav-item">
-                <%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-dark' %>
+                <%= link_to new_user_registration_path, class: 'nav-link text-dark' do %>
+                  <i class="fa-solid fa-person-running"></i>新規登録
+                <% end %>
               </li>
               <li class="nav-item">
-                <%= link_to "ログイン", new_user_session_path, class: 'nav-link text-dark' %>
+                <%= link_to new_user_session_path, class: 'nav-link text-dark' do %>
+                  <i class="fa-solid fa-fire-flame-curved"></i>ログイン
+                <% end %>
               </li>
             <% end %>
           </ul>
@@ -75,8 +92,8 @@
     <%= yield %>
   </main>
 
-  <footer class="text-white pt-2 pb-1">
-    <div class="container">
+  <footer class="text-white pt-3 pb-1">
+  <div class="container">
       <div class="row no-gutters">
         <div class="col-md-4">
           <p>健康な人を応援するSNS</p>

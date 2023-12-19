@@ -1,31 +1,36 @@
-<h1><%= @user.name %> の情報を編集</h1>
+<h1 class="mb-4"><%= @user.name %> の情報を編集</h1>
 
-<%= form_with model: @user, url: admin_user_path(@user), method: :patch, local: true do |form| %>
-  <div>
-    <%= form.label :name, '名前' %>
-    <%= form.text_field :name %>
+<%= form_with model: @user, url: admin_user_path(@user), method: :patch, local: true, class: 'needs-validation' do |form| %>
+  <div class="form-group mb-3">
+    <%= form.label :name, '名前', class: 'form-label' %>
+    <%= form.text_field :name, class: 'form-control' %>
   </div>
 
-  <div>
-    <%= form.label :email, 'メールアドレス' %>
-    <%= form.email_field :email %>
+  <div class="form-group mb-3">
+    <%= form.label :email, 'メールアドレス', class: 'form-label' %>
+    <%= form.email_field :email, class: 'form-control' %>
   </div>
 
-  <div>
-    <%= form.label :height, '身長' %>
-    <%= form.number_field :height, step: :any %>
+  <div class="form-group mb-3">
+    <%= form.label :height, '身長', class: 'form-label' %>
+    <%= form.number_field :height, step: :any, class: 'form-control' %>
   </div>
 
-  <div>
-    <%= form.label :weight, '体重' %>
-    <%= form.number_field :weight, step: :any %>
+  <div class="form-group mb-3">
+    <%= form.label :weight, '体重', class: 'form-label' %>
+    <%= form.number_field :weight, step: :any, class: 'form-control' %>
   </div>
 
-  <div>
-    <%= form.label :age, '年齢' %>
-    <%= form.number_field :age %>
+  <div class="form-group mb-3">
+    <%= form.label :age, '年齢', class: 'form-label' %>
+    <%= form.number_field :age, class: 'form-control' %>
   </div>
 
-  <%= form.submit '更新' %>
-  <%= link_to '戻る', admin_user_path(@user) %>
+  <div class="form-group mb-3">
+    <%= form.label :gender, '性別', class: 'form-label' %>
+    <%= form.select :gender, ['男性', '女性', 'その他'], {}, {class: 'form-control'} %>
+  </div>
+
+  <%= form.submit '更新', class: 'btn btn-success' %>
+  <%= link_to '戻る', admin_user_path(@user), class: 'btn btn-primary ms-2' %>
 <% end %>
