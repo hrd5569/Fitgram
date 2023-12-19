@@ -40,9 +40,9 @@
               <% end %>
             </div>
             <!-- 投稿画像 -->
-            <%= link_to post_path(post) do %>
-              <%= image_tag post.get_image, class: "card-img-top img-fluid" %>
-            <% end %>
+              <%= link_to post_path(post) do %>
+                <%= image_tag post.get_resized_image(1000, 1000), class: "card-img-top img-fluid" %>
+              <% end %>
             <div class="card-body">
               <!-- いいねとコメントボタン -->
               <div class="d-flex">
