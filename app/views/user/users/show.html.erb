@@ -1,17 +1,5 @@
 <div class="container-fluid">
   <div class="row align-items-start">
-
-    <!-- 検索フォーム -->
-    <div class="col-12">
-      <div class="d-flex justify-content-center mb-4">
-        <%= form_with url: search_posts_path, method: :get, local: true, class: 'form-inline' do %>
-          <%= select_tag :search_type, options_for_select({ 'ユーザー名': 'name', '投稿内容': 'caption' }), class: 'form-control mr-sm-2' %>
-          <%= text_field_tag :keyword, params[:keyword], placeholder: '検索...', class: 'form-control mr-sm-2' %>
-          <%= submit_tag '検索', class: 'btn btn-outline-success my-2 my-sm-0' %>
-        <% end %>
-      </div>
-    </div>
-
     <!-- サイドバー用のプロフィール -->
     <div class="col-lg-4 col-md-5">
       <%= render 'layouts/sidebar', user: @user %>
@@ -40,9 +28,9 @@
                   <% end %>
                 <% end %>
               </div>
-              <%= link_to post_path(post) do %>
-                <%= image_tag post.get_image, class: "card-img-top" %>
-              <% end %>
+                <%= link_to post_path(post) do %>
+                  <%= image_tag post.get_resized_image(1000, 1000), class: "card-img-top img-fluid" %>
+                <% end %>
               <div class="card-body">
                 <div class="d-flex">
                   <% favorite = post.favorites.find_by(user_id: current_user.id) %>
