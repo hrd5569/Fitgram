@@ -18,14 +18,14 @@ class User::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.page(params[:page]).reverse_order
+    @posts = Post.page(params[:page]).per(5).reverse_order
     @user = current_user
   end
 
   def show
     @post = Post.find(params[:id])
-    @new_comment = Comment.new  # 新しいコメント用のインスタンス
-    @comments = @post.comments  # 投稿に紐づくコメント
+    @new_comment = Comment.new
+    @comments = @post.comments.page(params[:page]).per(5)
   end
 
   def destroy
@@ -35,12 +35,12 @@ class User::PostsController < ApplicationController
   end
 
   def search
-    @posts = Post.search(params[:search_type], params[:keyword])
+    @posts = Post.search(params[:search_type], params[:keyword]).page(params[:page]).per(5)
     @user = current_user
   end
 
   def favorites
-    @favorites_posts = current_user.favorited_posts.page(params[:page]).reverse_order
+    @favorites_posts = current_user.favorited_posts.page(params[:page]).per(5).reverse_order
   end
 
 
