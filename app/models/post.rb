@@ -10,18 +10,18 @@ class Post < ApplicationRecord
   validates :image, presence: true
   validates :image_title, presence: true
 
-  def self.search(name, caption)
-  posts = Post.all.joins(:user)  # User モデルとの結合
-
-  if name.present?
-    posts = posts.where('users.name LIKE ?', "%#{name}%")
-  end
-
-  if caption.present?
-    posts = posts.where('caption LIKE ?', "%#{caption}%")
-  end
-
-  posts
+# 検索機能
+  def self.search(search_type, keyword)
+    if search_type == "name"
+      # ユーザー名で検索
+      Post.joins(:user).where('users.name LIKE ?', "%#{keyword}%")
+    elsif search_type == "caption"
+      # 投稿内容で検索
+      Post.where('caption LIKE ?', "%#{keyword}%")
+    else
+      # 何も選択されていない場合は全ての投稿を返す
+      Post.all
+    end
   end
 
   def favorited_by?(user)

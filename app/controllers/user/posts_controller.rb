@@ -34,7 +34,7 @@ class User::PostsController < ApplicationController
   end
 
   def search
-    @posts = Post.search(params[:name], params[:caption])
+    @posts = Post.search(params[:search_type], params[:keyword])
   end
 
   def favorites
