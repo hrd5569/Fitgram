@@ -19,6 +19,7 @@ class User::PostsController < ApplicationController
 
   def index
     @posts = Post.page(params[:page]).reverse_order
+    @user = current_user
   end
 
   def show
@@ -35,6 +36,7 @@ class User::PostsController < ApplicationController
 
   def search
     @posts = Post.search(params[:search_type], params[:keyword])
+    @user = current_user
   end
 
   def favorites
