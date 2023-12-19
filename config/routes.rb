@@ -15,6 +15,8 @@ Rails.application.routes.draw do
       member do
         post 'follow', to: 'relationships#create', as: 'follow'
         delete 'unfollow', to: 'relationships#destroy', as: 'unfollow'
+        get 'followers', to: 'users#followers', as: 'followers'
+        get 'followings', to: 'users#followings', as: 'followings'
         get 'information/edit', to: 'users#edit', as: 'edit_user_information'
         patch 'information', to: 'users#update', as: 'update_user_information'
         patch 'users/withdraw', to: 'users#withdraw', as: 'withdraw_user_status'

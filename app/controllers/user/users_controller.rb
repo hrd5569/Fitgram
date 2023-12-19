@@ -25,6 +25,16 @@ class User::UsersController < ApplicationController
     end
   end
 
+  def followers
+    user = User.find(params[:id])
+    @followers = user.followers.page(params[:page])
+  end
+
+  def followings
+    user = User.find(params[:id])
+    @followings = user.followings.page(params[:page])
+  end
+
   def withdraw
     # ユーザーの退会処理
     @user = User.find(params[:id])
