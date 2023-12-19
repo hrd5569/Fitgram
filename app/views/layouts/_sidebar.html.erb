@@ -1,21 +1,21 @@
-  <div class="card">
-    <%= image_tag user.get_profile_image(300, 300), alt: "プロフィール画像", class: "card-img-top rounded-circle", size: "100x500" %>
-    <div class="card-body text-center">
-      <h5 class="card-title"><%= user.name %></h5>
-      <p class="card-text">
-        <strong>BMI:</strong> <%= user.bmi %>
-      </p>
-      <p class="card-text">
-        <strong>フォロー数:</strong> <%= user.followings.count %>
-      </p>
-      <p class="card-text">
-        <strong>フォロワー数:</strong> <%= user.followers.count %>
-      </p>
-      <p class="card-text">
-        <strong>いいねの数:</strong> <%= user.favorites.count %>
-      </p>
-      <% if current_user == user %>
-        <%= link_to "プロフィール編集", edit_user_information_user_path(user), class: "btn btn-outline-secondary btn-block" %>
-      <% end %>
-    </div>
+<div class="card">
+  <%= image_tag user.get_profile_image(300, 300), alt: "プロフィール画像", class: "card-img-top rounded-circle", size: "100x500" %>
+  <div class="card-body text-center">
+    <h5 class="card-title"><%= user.name %></h5>
+    <p class="card-text">
+      <strong>BMI:</strong> <%= user.bmi %>
+    </p>
+    <p class="card-text">
+      <strong>フォロー数:</strong> <%= link_to user.followings.count, followings_user_path(user) %>
+    </p>
+    <p class="card-text">
+      <strong>フォロワー数:</strong> <%= link_to user.followers.count, followers_user_path(user) %>
+    </p>
+    <p class="card-text">
+      <strong>いいねの数:</strong> <%= user.favorites.count %>
+    </p>
+    <% if current_user == user %>
+      <%= link_to "プロフィール編集", edit_user_information_user_path(user), class: "btn btn-outline-secondary btn-block" %>
+    <% end %>
   </div>
+</div>
