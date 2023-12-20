@@ -1,4 +1,4 @@
-<h1 class="mb-4">フォロー中のユーザー</h1>
+<h1 class="mb-4">フォロワー一覧</h1>
 
 <table class="table table-striped">
   <thead>
@@ -12,18 +12,18 @@
     </tr>
   </thead>
   <tbody>
-    <% user.followings.each do |following| %>
+    <% @user.followers.each do |follower| %>
       <tr>
         <td class="px-3">
-          <%= image_tag following.get_profile_image(90, 90), class: 'img-fluid rounded-circle' %>
+          <%= image_tag follower.get_profile_image(90, 90), class: 'img-fluid rounded-circle' %>
         </td>
-        <td class="px-3"><%= following.name %></td>
-        <td class="px-3"><%= following.bmi %></td>
-        <td class="px-3"><%= following.followings.count %></td>
-        <td class="px-3"><%= following.followers.count %></td>
+        <td class="px-3"><%= follower.name %></td>
+        <td class="px-3"><%= follower.bmi %></td>
+        <td class="px-3"><%= follower.followings.count %></td>
+        <td class="px-3"><%= follower.followers.count %></td>
         <td class="px-3">
           <% if current_user.following?(follower) %>
-            <%= link_to 'フォロー解除', unfollow_user_path(follower), method: :delete, class: 'btn btn-sm btn-outline-primary' %>
+            <%= link_to 'フォロー解除', unfollow_user_path(follower), method: :delete, class: 'btn btn-sm btn-primary' %>
           <% else %>
             <%= link_to 'フォローする', follow_user_path(follower), method: :post, class: 'btn btn-sm btn-primary' %>
           <% end %>
