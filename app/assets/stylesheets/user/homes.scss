@@ -25,9 +25,16 @@ border: 1px solid rgba( 255, 255, 255, 0.18 );
   position: relative;
 }
 
+
+body {
+ background-image: image-url("background-4.jpg");
+ background-position: center;
+ background-size: cover;
+ background-position: center;
+}
+
 .btn-user {
   // position: absolute;
   // bottom: 10px;
   width: 90%;
-  
 }
