@@ -39,6 +39,19 @@
                   <i class="fa-solid fa-heart"></i> いいね一覧
                 <% end %>
               </li>
+
+              <li class="nav-item">
+                <%= link_to followings_user_path(current_user), class: 'nav-link text-dark' do %>
+                  <i class="fa-solid fa-person-circle-check"></i> フォロー
+                <% end %>
+              </li>
+
+              <li class="nav-item">
+                <%= link_to followers_user_path(current_user), class: 'nav-link text-dark' do %>
+                  <i class="fa-solid fa-user-group"></i> フォロワー
+                <% end %>
+              </li>
+
               <li class="nav-item">
                 <%= link_to new_post_path, class: 'nav-link text-dark' do %>
                   <i class="fa-solid fa-pen"></i> 投稿フォーム
