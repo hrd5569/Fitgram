@@ -1,12 +1,13 @@
-<div class="post-detail py-5 ">
-  <div class="card w-75 mx-auto mt-4 shadow-lg">
+<div class="post-detail py-5">
+  <div class="card mx-auto mt-4 shadow-lg w-75 w-sm-75">
     <%= image_tag @post.get_image, class: "card-img-top" %>
     <div class="card-body">
       <div class="row">
-        <div class="col-2">
-          <%= image_tag @post.user.get_profile_image(100, 100), class: "rounded-circle" %>
+        <!-- 画像サイズをレスポンシブ対応にする -->
+        <div class="col-12 col-md-2">
+          <%= image_tag @post.user.get_profile_image(30, 30), class: "rounded-circle img-fluid", style: "max-width: 80px; height: auto;" %>
         </div>
-        <div class="col-10">
+        <div class="col-12 col-md-10">
           <p class="card-title">
             <%= link_to post_path(@post), class: "text-dark" do %>
               <strong><i class="far fa-flag"></i> <span> <%= @post.image_title %></span></strong>
@@ -48,9 +49,6 @@
             </div>
           </div>
         <% end %>
-
-        <%= paginate @comments %>
-
       </div>
       <hr>
       <div class="new-comment card-text">
