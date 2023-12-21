@@ -21,16 +21,63 @@ header {
 }
 
  /*青と緑のグラデーション*/
- body {
-  background-image: linear-gradient(32deg, rgba(144, 245, 154, 0.7), rgba(4, 202, 255, 0.7) 100%),image-url("background-2.jpg");
-  background-position: center;
-  background-size: cover;
- }
+ // body {
+ //  background-image: linear-gradient(32deg, rgba(144, 245, 154, 0.7), rgba(4, 202, 255, 0.7) 100%),image-url("background-2.jpg");
+ //  background-position: center;
+ //  background-size: cover;
+ // }
 
 /*赤と黄色のグラデーション*/
 /*body {*/
 /*  background-image: linear-gradient(196deg, rgba(247, 93, 139, 1), rgba(254, 220, 64, 1));*/
 /*}*/
+
+// application.scss
+
+// ユーザーホームページ
+.user_homes_top {
+  background-color: #e0f7fa; // 例: 水色の背景
+}
+
+// ユーザーのプロフィールページ
+.user_users_show {
+  background-image: url('background-5.jpg');
+}
+
+// ユーザーのフォロー一覧ページ
+.user_users_followings_user {
+  background-color: #fff9c4; // 例: 明るい黄色の背景
+}
+
+// ユーザーのフォロワー一覧ページ
+.user_users_followers_user {
+  background-color: #c8e6c9; // 例: 明るい緑色の背景
+}
+
+// 投稿の検索ページ
+.user_posts_search_posts {
+  background-color: #bbdefb; // 例: 明るい青色の背景
+}
+
+// いいねした投稿一覧ページ
+.user_posts_favorite_posts {
+  background-color: #f8bbd0; // 例: 明るいピンク色の背景
+}
+
+// 投稿の詳細ページ
+.user_posts_show {
+  background-color: #d1c4e9; // 例: 明るい紫色の背景
+}
+
+// 管理者トップページ
+.admin_homes_top {
+  background-color: #b2dfdb; // 例: 明るいターコイズ色の背景
+}
+
+// 管理者のユーザー一覧ページ
+.admin_users_index {
+  background-color: #ffe0b2; // 例: 明るいオレンジ色の背景
+}
 
 
 
