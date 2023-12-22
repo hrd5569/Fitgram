@@ -1,5 +1,5 @@
-<div class="card">
-  <%= image_tag user.get_profile_image(300, 300), alt: "プロフィール画像", class: "card-img-top rounded-circle", size: "100x500" %>
+<div class="card my-3 profile">
+  <%= image_tag user.get_profile_image(200, 200), alt: "プロフィール画像", class: "card-img-top rounded-circle mx-auto w-50 h-50" %>
   <div class="card-body text-center">
     <h5 class="card-title"><%= user.name %></h5>
     <p class="card-text">
@@ -15,7 +15,7 @@
       <strong>いいねの数:</strong> <%= user.favorites.count %>
     </p>
     <% if current_user == user %>
-      <%= link_to "プロフィール編集", edit_user_information_user_path(user), class: "btn btn-outline-secondary btn-block" %>
+      <%= link_to "プロフィール編集", edit_user_information_user_path(user), class: "btn btn-link btn-block" %>
     <% end %>
     <%= link_to 'フォロー 一覧', followings_user_path(user), class: "btn btn-primary btn-block mt-2" %>
     <%= link_to 'フォロワー 一覧', followers_user_path(user), class: "btn btn-secondary btn-block mt-2" %>
