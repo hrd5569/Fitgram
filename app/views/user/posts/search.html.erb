@@ -20,49 +20,7 @@
     <!-- 投稿内容 -->
      <div class="col-lg-9 col-md-8">
       <% @posts.each do |post| %>
-        <div class="card mb-3 bg-transparent border-0 shadow-lg custom-background">
-          <div class="card-body p-4 rounded-lg">
-            <div class="mb-5 bg-white rounded-lg">
-              <!-- 投稿内容の詳細 -->
-              <div class="d-flex justify-content-between">
-                <div class="d-flex align-items-center">
-                  <%= image_tag post.user.get_profile_image(30,30), size: "50x50", class: "rounded-circle mr-2" %>
-                  <div>
-                    <strong><%= post.user.name %></strong>
-                    <p><small class="text-muted"><%= post.user.followers.count %> フォロワー</small></p>
-                  </div>
-                </div>
-                <% unless post.user == current_user %>
-                  <% if current_user.following?(post.user) %>
-                    <%= link_to 'フォロー解除', unfollow_user_path(post.user.id), method: :delete, class: "btn btn-outline-primary btn-sm" %>
-                  <% else %>
-                    <%= link_to 'フォローする', follow_user_path(post.user.id), method: :post, class: "btn btn-outline-primary btn-sm" %>
-                  <% end %>
-                <% end %>
-              </div>
-              <%= link_to post_path(post) do %>
-                <%= image_tag post.get_resized_image(1000, 1000), class: "card-img-top img-fluid custom-image" %>
-              <% end %>
-              <div class="card-body">
-                <div class="d-flex">
-                  <% favorite = post.favorites.find_by(user_id: current_user.id) %>
-                  <% if favorite %>
-                    <%= link_to favorite_path(favorite), method: :delete, class: "btn btn-outline-danger btn-sm mr-2" do %>
-                      <i class="fas fa-heart"></i> いいね解除
-                    <% end %>
-                  <% else %>
-                    <%= link_to favorites_path(post_id: post.id), method: :post, class: "btn btn-outline-danger btn-sm mr-2" do %>
-                      <i class="fas fa-heart"></i> いいね
-                    <% end %>
-                  <% end %>
-                  <span class="mr-2"><%= post.favorites.count %> いいね</span>
-                  <span><%= post.comments.count %> コメント</span>
-                </div>
-                <p class="card-text mt-2"><%= post.caption %></p>
-              </div>
-            </div>
-          </div>
-        </div>
+　　　　<%= render 'user/posts/post_card', post: post %>
       <% end %>
       <%= paginate @posts %>
     </div>
