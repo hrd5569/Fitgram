@@ -26,7 +26,7 @@
     <% @users.each do |user| %>
       <tr>
         <td class="px-3">
-          <%= link_to image_tag(user.get_profile_image(90, 90), class: 'img-fluid rounded-circle'), admin_user_path(user) %>
+          <%= link_to image_tag(user.get_profile_image(50, 50),size: "50x50", class: 'img-fluid rounded-circle'), admin_user_path(user) %>
         </td>
         <td class="px-3"><%= user.name %></td>
         <td class="px-3"><%= user.email %></td>

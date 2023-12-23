@@ -14,7 +14,7 @@
     <p class="card-text">
       <strong>いいねの数:</strong> <%= user.favorites.count %>
     </p>
-    <% if current_user == user %>
+    <% if current_user == user && current_user.email != "guest@example.com" %>
       <%= link_to "プロフィール編集", edit_user_information_user_path(user), class: "btn btn-light btn-block" %>
     <% end %>
     <%= link_to 'フォロー 一覧', followings_user_path(user), class: "btn btn-info btn-block mt-2" %>

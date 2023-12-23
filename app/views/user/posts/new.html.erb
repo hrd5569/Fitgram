@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row justify-content-center">
-    <div class="col-md-5 mx-2 shadow-lg rounded px-0 my-5">
-      <h5 class="text-dark bg-light p-4 mb-0">投稿フォーム</h5>
+    <div class="col-md-5 mx-2 shadow-lg rounded px-0 my-5 bg-white">
+      <h5 class="text-dark p-4 mb-0 text-center">投稿フォーム</h5>
       <div class="form-body p-4">
         <!-- 送信できなかった場合のエラー表示 -->
         <% if @post.errors.any? %>
@@ -34,7 +34,7 @@
             <%= f.text_area :caption, class: 'form-control', rows: '3', placeholder: 'コメントここに' %>
           </div>
 
-          <%= f.submit '投稿', class: 'btn btn-lg btn-block custom-submit-btn mt-4' %>
+          <%= f.submit '投稿', class: 'btn btn-lg btn-block btn-info custom-submit-btn mt-4' %>
         <% end %>
       </div>
     </div>

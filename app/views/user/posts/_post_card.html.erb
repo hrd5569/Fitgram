@@ -4,7 +4,7 @@
       <!-- 投稿内容の詳細 -->
       <div class="d-flex justify-content-between">
         <div class="d-flex align-items-center">
-          <%= image_tag post.user.get_profile_image(50,50), size: "70x70", class: "rounded-circle mr-2" %>
+          <%= image_tag post.user.get_profile_image(50,50), size: "60x60", class: "rounded-circle mr-2" %>
           <div>
             <strong><%= post.user.name %></strong>
             <p><small class="text-muted"><%= post.user.followers.count %> フォロワー</small></p>

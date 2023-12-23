@@ -38,7 +38,7 @@
 
             <div class="form-group">
               <%= f.label :age, "年齢" %>
-              <%= f.text_field :age, autofocus: true, autocomplete: "age", class: "form-control" %>
+              <%= f.number_field :age, autofocus: true, autocomplete: "age", class: "form-control" %>
             </div>
 
             <div class="form-group">
@@ -55,7 +55,7 @@
               <%= f.label :gender, "性別" %>
               <%= f.select :gender, ["男性", "女性"], { prompt: "選択してください" }, class: "form-control" %>
             </div>
-            
+
             <div class="d-grid gap-2">
               <%= f.submit "Sign up", class: "btn btn-warning btn-block" %>
             </div>
