@@ -72,6 +72,6 @@ class User < ApplicationRecord
 
   # BMI計算メソッド
   def bmi
-    weight / ((height / 100) ** 2).floor
+    self.weight / ((self.height / 100) ** 2).floor
   end
 end
