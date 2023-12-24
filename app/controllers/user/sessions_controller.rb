@@ -23,7 +23,7 @@ class User::SessionsController < Devise::SessionsController
     user = User.guest
     sign_in user
 
-    redirect_to user_path(user), notice: "guestuserでログインしました。"
+    redirect_to posts_path(user), notice: "guestuserでログインしました。"
   end
 
    protected

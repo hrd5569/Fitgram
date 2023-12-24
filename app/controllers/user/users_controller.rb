@@ -1,6 +1,6 @@
 class User::UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :ensure_guest_user, only: [:edit, :update, :withdraw,]
+  before_action :ensure_guest_user, only: [:edit, :update, :withdraw]
   before_action :ensure_correct_user, only: [:edit, :update, :withdraw, :followings, :followers]
 
     # ユーザーの情報をビューのレイアウトに表示

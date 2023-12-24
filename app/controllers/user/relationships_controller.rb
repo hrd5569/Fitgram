@@ -1,6 +1,5 @@
 class User::RelationshipsController < ApplicationController
   before_action :authenticate_user!
-  before_action :ensure_guest_user
 
   # フォローする
   def create

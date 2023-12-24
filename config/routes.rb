@@ -35,7 +35,6 @@ Rails.application.routes.draw do
     get 'posts/favorites', to: 'posts#favorites', as: 'favorite_posts'
 
     # その他のルーティング
-    get '/about', to: 'homes#about', as: 'about'
     get 'users/check', to: 'users#check', as: 'check_unsubscribe'
     resources :posts do
       resources :comments, only: [:create, :destroy]
