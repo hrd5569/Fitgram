@@ -3,33 +3,18 @@
     <%= image_tag @post.get_image, class: "card-img-top" %>
     <div class="card-body">
       <div class="row">
-        <!-- 画像サイズをレスポンシブ対応にする -->
         <div class="col-12 col-md-2">
           <%= image_tag @post.user.get_profile_image(30, 30), class: "rounded-circle img-fluid", style: "max-width: 80px; height: auto;" %>
         </div>
         <div class="col-12 col-md-10">
           <p class="card-title">
-            <%= link_to post_path(@post), class: "text-dark" do %>
-              <strong><i class="far fa-flag"></i> <span> <%= @post.image_title %></span></strong>
-            <% end %>
+            <strong><i class="far fa-flag"></i> <span> <%= @post.image_title %></span></strong>
           </p>
           <p class="card-title">説明：<%= @post.caption %></p>
           <span><i class="fas fa-user"></i> By <%= @post.user.name %> ｜ </span>
           <span><i class="fa fa-calendar"></i> <%= @post.created_at.strftime('%Y/%m/%d') %> ｜ </span>
-          <span><i class="fa fa-comment"></i> <%= link_to "#{@post.comments.count}", post_path(@post), class: "text-dark" %> ｜ </span>
-          <% if @post.favorited_by?(current_user) %>
-            <span>
-              <%= link_to favorite_path(@post), class: "text-dark", method: :delete do %>
-                <i class="fa fa-heart" aria-hidden="true"></i> <%= @post.favorites.count %>
-              <% end %>
-            </span>
-          <% else %>
-            <span>
-              <%= link_to favorites_path, class: "text-dark", method: :post do %>
-                <i class="fa fa-heart" aria-hidden="true"></i> <%= @post.favorites.count %>
-              <% end %>
-            </span>
-          <% end %>
+          <span><i class="fa fa-comment"></i> <%= @post.comments.count %> ｜ </span>
+          <span><i class="fa fa-heart" aria-hidden="true"></i> <%= @post.favorites.count %></span>
           <% if @post.user == current_user %>
             <%= link_to "削除", post_path(@post), method: :delete, class: "btn btn-danger text-white" %>
           <% end %>
