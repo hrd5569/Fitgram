@@ -1,4 +1,8 @@
 class User < ApplicationRecord
+  GUEST_USER_EMAIL = "guest@example.com"
+  GUEST_USER_WEIGHT = 100
+  GUEST_USER_HEIGHT = 100
+
   # Deviseの設定
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, authentication_keys: [:name]
@@ -27,6 +31,16 @@ class User < ApplicationRecord
     return User.all unless name.present?
 
     User.where('name LIKE ?', "%#{name}%")
+  end
+
+   # ゲストログインメソッド
+  def self.guest
+    find_or_create_by!(email: GUEST_USER_EMAIL) do |user|
+      user.password = SecureRandom.urlsafe_base64
+      user.name = "guestuser"
+      user.weight = GUEST_USER_WEIGHT
+      user.height = GUEST_USER_HEIGHT
+    end
   end
 
   # プロフィール画像取得メソッド
@@ -58,20 +72,6 @@ class User < ApplicationRecord
 
   # BMI計算メソッド
   def bmi
-    self.weight / ((self.height / 100) ** 2).floor
-  end
-
-  # ゲストログインメソッド
-  GUEST_USER_EMAIL = "guest@example.com"
-  GUEST_USER_WEIGHT = 100
-  GUEST_USER_HEIGHT = 100
-
-  def self.guest
-    find_or_create_by!(email: GUEST_USER_EMAIL) do |user|
-      user.password = SecureRandom.urlsafe_base64
-      user.name = "guestuser"
-      user.weight = GUEST_USER_WEIGHT
-      user.height = GUEST_USER_HEIGHT
-    end
+    weight / ((height / 100) ** 2).floor
   end
 end

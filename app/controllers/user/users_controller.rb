@@ -1,13 +1,12 @@
 class User::UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :ensure_guest_user, only: [:edit, :update, :withdraw, :show]
+  before_action :redirect_if_guest_user, only: [:edit, :update, :withdraw]
   before_action :ensure_correct_user, only: [:edit, :update, :withdraw, :followings, :followers, :show]
 
     # ユーザーの情報をビューのレイアウトに表示
   def show
     @user = User.find(params[:id])
     @posts = @user.posts.page(params[:page]).reverse_order
-    @post_comments = Post.new
   end
 
     # ユーザー情報の編集
@@ -49,20 +48,19 @@ class User::UsersController < ApplicationController
   end
 
   private
-  def ensure_guest_user
-    if current_user.email == "guest@example.com"
+
+  def redirect_if_guest_user
+    if current_user.email == User::GUEST_USER_EMAIL
       redirect_to root_path, notice: "ゲストユーザーのため実行できません。"
     end
   end
 
   def ensure_correct_user
     # 現在のユーザーが対象ユーザーであるか確認
-    @user = User.find(params[:id])
-    redirect_to(root_path) unless @user == current_user
+    redirect_to root_path if current_user.id != params[:id].to_i
   end
 
   def user_params
     params.require(:user).permit(:profile_image, :name, :age, :height, :weight, :gender)
   end
-
 end

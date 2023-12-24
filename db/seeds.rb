@@ -9,9 +9,12 @@
 #adminsという配列にemailとpasswordの情報をハッシュを格納
 #配列は[0,1,2,3]
 #ハッシュは{ key: "値"}
-admins = [
-  {email: "admin@example.com", password: "password"},
-]
+Admin.create!(
+  email: ENV['ADMIN_EMAIL'],
+  password: ENV['ADMIN_PASSWORD'],
+  password_confirmation: ENV['ADMIN_PASSWORD']
+)
+
 #admins.each doでadminというブロック変数にadminsの値を順番に代入
 #Adminモデルのデータベースから()内の引数で配列化したハッシュのkey: 値を
 #find_or_create_byで一致するものがあればそのレコードが取得されて
