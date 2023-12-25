@@ -34,13 +34,14 @@ class User::UsersController < ApplicationController
     @followers = @user.followers.page(params[:page])
   end
 
-
   def withdraw
-    # ユーザーの退会処理
     @user = User.find(params[:id])
-    @user.update(is_active: false)
-    reset_session
-    redirect_to root_path, notice: '退会処理が完了しました。'
+    if @user.destroy
+      reset_session
+      redirect_to root_path, notice: '退会処理が完了しました。'
+    else
+      redirect_to user_path(current_user), alert: '退会処理に失敗しました。'
+    end
   end
 
   def search

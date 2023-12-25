@@ -74,4 +74,5 @@ class User < ApplicationRecord
   def bmi
     self.weight / ((self.height / 100) ** 2).floor
   end
+
 end
