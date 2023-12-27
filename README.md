@@ -1,5 +1,5 @@
 # Fitgram
-​![Uploading image.png…]()
+
 ## サイト概要
 
 ### サイトテーマ
