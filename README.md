@@ -1,5 +1,5 @@
 # Fitgram
-​https://i.gyazo.com/080691e8f8ab1a7dabdf90cc4e182214.jpg
+​![Uploading image.png…]()
 ## サイト概要
 
 ### サイトテーマ
