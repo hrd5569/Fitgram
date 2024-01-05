@@ -1,0 +1,6 @@
+<% favorite = post.favorites.find_by(user_id: current_user.id) %>
+<% if favorite %>
+  <%= link_to favorite_path(favorite), remote: true, method: :delete, class: "btn btn-outline-danger btn-sm mr-2" do %>
+    <i class="fas fa-heart"></i> いいね解除
+  <% end %>
+<% end %>
