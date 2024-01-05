@@ -4,7 +4,7 @@
       <!-- 投稿内容の詳細 -->
       <div class="d-flex justify-content-between">
         <div class="d-flex align-items-center">
-          <%= image_tag post.user.get_profile_image(50,50), size: "60x60", class: "rounded-circle mr-2" %>
+          <%= image_tag post.user.get_profile_image(50, 50), size: "60x60", class: "rounded-circle mr-2" %>
           <div>
             <strong><%= post.user.name %></strong>
             <p><small class="text-muted"><%= post.user.followers.count %> フォロワー</small></p>
@@ -26,13 +26,9 @@
           <div id="favorite_<%= post.id %>">
             <% favorite = post.favorites.find_by(user_id: current_user.id) %>
             <% if favorite %>
-              <%= link_to favorite_path(favorite), remote: true, method: :delete, class: "btn btn-outline-danger btn-sm mr-2" do %>
-                <i class="fas fa-heart"></i> いいね解除
-              <% end %>
+              <%= render 'user/posts/unfavorite', post: post %>
             <% else %>
-              <%= link_to favorites_path(post_id: post.id), remote: true, method: :post, class: "btn btn-outline-danger btn-sm mr-2" do %>
-                <i class="fas fa-heart"></i> いいね
-              <% end %>
+              <%= render 'user/posts/favorite', post: post %>
             <% end %>
           </div>
           <span class="mr-2"><%= post.favorites.count %> いいね</span>
