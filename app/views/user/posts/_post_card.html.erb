@@ -34,6 +34,12 @@
           <span class="mr-2"><%= post.favorites.count %> いいね</span>
           <span><%= post.comments.count %> コメント</span>
         </div>
+        <!-- タグの表示 -->
+        <div class="mt-2">
+          <% post.tags.each do |tag| %>
+            <span class="badge badge-secondary"><%= tag.name %></span>
+          <% end %>
+        </div>
         <p class="card-text mt-2"><%= post.caption %></p>
       </div>
     </div>

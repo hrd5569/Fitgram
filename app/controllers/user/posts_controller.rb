@@ -9,7 +9,16 @@ class User::PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
+    # APIを実行してレスポンスをlabelsに格納する
+    # labels例: ["Flower", "Petal", "Plant"]
+    labels = Vision.get_image_data(post_params[:image])
     if @post.save
+      # それぞれのlabelに対してTagとPostTagを作成する
+      labels.each do |label|
+        # label例: Flower
+        tag = Tag.find_or_create_by(name: label)
+        PostTag.create(post_id: @post.id, tag_id: tag.id)
+      end
       redirect_to posts_path
     else
       render :new
