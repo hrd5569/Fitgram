@@ -9,6 +9,7 @@
       <th class="px-3">フォロー数</th>
       <th class="px-3">フォロワー数</th>
       <th class="px-3"></th>
+      <th class="px-3"></th> <!-- 投稿閲覧用の列を追加 -->
     </tr>
   </thead>
   <tbody>
@@ -27,6 +28,9 @@
           <% else %>
             <%= link_to 'フォローする', follow_user_path(follower), method: :post, class: 'btn btn-sm btn-primary' %>
           <% end %>
+        </td>
+        <td class="px-3">
+          <%= link_to '投稿を見る', user_path(follower), class: 'btn btn-sm btn-secondary' %> <!-- 追加 -->
         </td>
       </tr>
     <% end %>
