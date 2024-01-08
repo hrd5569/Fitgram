@@ -35,7 +35,7 @@
               <% end %>
             <% end %>
           </div>
-          <span class="mr-2"><%= post.favorites.count %> いいね</span>
+          <span id="likes-count-<%= post.id %>" class="mr-2"><%= post.favorites.count %> いいね</span>
           <span><%= post.comments.count %> コメント</span>
         </div>
         <!-- タグの表示 -->

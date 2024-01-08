@@ -1,2 +1,5 @@
-// いいねボタンのDOMを更新
+// いいねボタンを更新
 $("#favorite_<%= @post.id %>").html("<%= j(render 'user/posts/unfavorite', post: @post) %>");
+
+// いいねの数を更新
+$("#likes-count-<%= @post.id %>").text('<%= @post.favorites.count %> いいね');
