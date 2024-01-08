@@ -26,9 +26,13 @@
           <div id="favorite_<%= post.id %>">
             <% favorite = post.favorites.find_by(user_id: current_user.id) %>
             <% if favorite %>
-              <%= render 'user/posts/unfavorite', post: post %>
+              <%= link_to favorite_path(favorite), method: :delete, remote: true, class: "btn btn-outline-danger btn-sm mr-2" do %>
+                <i class="fas fa-heart"></i> いいね解除
+              <% end %>
             <% else %>
-              <%= render 'user/posts/favorite', post: post %>
+              <%= link_to favorites_path(post_id: post.id), method: :post, remote: true, class: "btn btn-outline-danger btn-sm mr-2" do %>
+                <i class="fas fa-heart"></i> いいね
+              <% end %>
             <% end %>
           </div>
           <span class="mr-2"><%= post.favorites.count %> いいね</span>

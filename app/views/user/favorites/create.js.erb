@@ -1,0 +1,2 @@
+// いいねボタンのDOMを更新
+$("#favorite_<%= @post.id %>").html("<%= j(render 'user/posts/unfavorite', post: @post) %>");
