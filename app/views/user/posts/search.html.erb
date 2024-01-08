@@ -1,16 +1,8 @@
 <div class="container-fluid">
   <div class="row align-items-start">
 
-    <!-- 検索フォーム -->
-    <div class="col-12">
-      <div class="d-flex justify-content-center mb-4">
-        <%= form_with url: search_posts_path, method: :get, local: true, class: 'form-inline' do %>
-          <%= select_tag :search_type, options_for_select({ 'ユーザー名': 'name', '投稿内容': 'caption' }), class: 'form-control mr-sm-2' %>
-          <%= text_field_tag :keyword, params[:keyword], placeholder: '検索...', class: 'form-control mr-sm-2' %>
-          <%= submit_tag '検索', class: 'btn btn-success my-2 my-sm-0' %>
-        <% end %>
-      </div>
-    </div>
+    <!-- 検索フォーム部分テンプレートの呼び出し -->
+    <%= render 'user/posts/search_form' %>
 
     <!-- サイドバー用のプロフィール -->
     <div class="col-lg-3 col-md-4 sticky-top">
