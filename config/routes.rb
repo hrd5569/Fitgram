@@ -51,7 +51,7 @@ Rails.application.routes.draw do
     get '', to: 'homes#top', as: '/'
     resources :users, only: [:index, :edit, :show, :update, :destroy] do
       collection do
-        get 'search', to: 'users#search' # 検索用のルートを追加
+        get 'search', to: 'users#search'
       end
     end
     resources :posts, only: [:destroy]

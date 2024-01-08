@@ -1,2 +1,2 @@
 // いいねボタンの更新
-$("#favorite_<%= @post.id %>").html("<%= j(render 'posts/unfavorite', post: @post) %>");
+$("#favorite_<%= @post.id %>").html("<%= escape_javascript(render 'user/posts/unfavorite', post: @post) %>");
