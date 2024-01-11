@@ -1,5 +1,6 @@
 # Fitgram
 [![Image from Gyazo](https://i.gyazo.com/c614dd9be3c980e49fa48f7181552ede.jpg)](https://gyazo.com/c614dd9be3c980e49fa48f7181552ede)
+[![Image from Gyazo](https://i.gyazo.com/46e063b9526535e2a4e437d47ab8e650.jpg)](https://gyazo.com/46e063b9526535e2a4e437d47ab8e650)
 ## サイト概要
 
 ### サイトテーマ
