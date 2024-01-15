@@ -12,7 +12,7 @@
       <strong>フォロワー数:</strong> <%= link_to user.followers.count, followers_user_path(user) %>
     </p>
     <p class="card-text">
-      <strong>いいねの数:</strong> <%= user.posts.joins(:favorites).where(favorites: { user_id: User.where(is_active: true) }).count %>
+      <strong>いいね数:</strong> <%= user.posts.joins(:favorites).where(favorites: { user_id: User.where(is_active: true) }).count %>
     </p>
     <% if current_user == user && current_user.email != "guest@example.com" %>
       <%= link_to "プロフィール編集", edit_user_information_user_path(user), class: "btn btn-warning btn-block" %>
