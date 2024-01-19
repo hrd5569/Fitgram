@@ -11,13 +11,11 @@
           </div>
         </div>
         <% unless post.user == current_user %>
-          <div id="follow-button-<%= post.user.id %>">
-            <% if current_user.following?(post.user) %>
-              <%= render 'user/relationships/unfollow', other_user: post.user %>
-            <% else %>
-              <%= render 'user/relationships/follow', other_user: post.user %>
-            <% end %>
-          </div>
+          <% if current_user.following?(post.user) %>
+            <%= render 'user/relationships/unfollow', other_user: post.user %>
+          <% else %>
+            <%= render 'user/relationships/follow', other_user: post.user %>
+          <% end %>
         <% end %>
       </div>
       <%= link_to post_path(post) do %>
