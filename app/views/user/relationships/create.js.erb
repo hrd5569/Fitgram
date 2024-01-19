@@ -1,2 +1,3 @@
-// フォローボタンの状態を更新
-$("#follow-button-<%= @other_user.id %>").replaceWith("<%= escape_javascript(render 'user/relationships/unfollow', other_user: @other_user) %>");
+// フォロワー数の更新
+var followersCount = $("#followers-count-<%= @other_user.id %>");
+followersCount.html("<small>" + (parseInt(followersCount.text()) + 1) + " フォロワー</small>");
