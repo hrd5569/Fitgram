@@ -1,0 +1,2 @@
+// フォローボタンの状態を更新
+$("#follow-form-<%= @other_user.id %>").html("<%= escape_javascript(render 'user/relationships/unfollow', other_user: @other_user) %>");
