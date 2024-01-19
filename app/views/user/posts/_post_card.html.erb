@@ -11,11 +11,13 @@
           </div>
         </div>
         <% unless post.user == current_user %>
-          <% if current_user.following?(post.user) %>
-            <%= link_to 'フォロー解除', unfollow_user_path(post.user.id), method: :delete, class: "btn btn-outline-primary btn-sm" %>
-          <% else %>
-            <%= link_to 'フォローする', follow_user_path(post.user.id), method: :post, class: "btn btn-outline-primary btn-sm" %>
-          <% end %>
+          <div id="follow-button-<%= post.user.id %>">
+            <% if current_user.following?(post.user) %>
+              <%= render 'user/relationships/unfollow', other_user: post.user %>
+            <% else %>
+              <%= render 'user/relationships/follow', other_user: post.user %>
+            <% end %>
+          </div>
         <% end %>
       </div>
       <%= link_to post_path(post) do %>
