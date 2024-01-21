@@ -6,10 +6,10 @@
       <strong>BMI:</strong> <%= user.bmi %>
     </p>
     <p class="card-text">
-      <strong>フォロー数:</strong> <%= link_to user.followings.count, followings_user_path(user) %>
+      <strong>フォロー数:</strong> <%= link_to user.followings.count, followings_user_path(user), id: "sidebar-followings-count" %>
     </p>
     <p class="card-text">
-      <strong>フォロワー数:</strong> <%= link_to user.followers.count, followers_user_path(user) %>
+      <strong>フォロワー数:</strong> <%= link_to user.followers.count, followers_user_path(user), id: "sidebar-followers-count" %>
     </p>
     <p class="card-text">
       <strong>いいね数:</strong> <%= user.posts.joins(:favorites).where(favorites: { user_id: User.where(is_active: true) }).count %>

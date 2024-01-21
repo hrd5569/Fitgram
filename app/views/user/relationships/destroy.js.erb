@@ -1,5 +1,11 @@
 // フォローボタンの状態を更新
 $("#follow-button-<%= @other_user.id %>").replaceWith("<%= escape_javascript(render 'user/relationships/follow', other_user: @other_user) %>");
+
 // フォロワー数の更新
-var followersCount = $("#followers-count-<%= @other_user.id %>");
-followersCount.html("<small>" + (parseInt(followersCount.text()) - 1) + " フォロワー</small>");
+var followersCount = $("#followers-count-<%= @other_user.id %>").find('small');
+var count = parseInt(followersCount.text().match(/\d+/)[0]);
+followersCount.text((count - 1) + " フォロワー");
+
+// サイドバーのフォロワー数とフォロー数の更新
+$("#sidebar-followers-count").text("<%= current_user.followers.count %>");
+$("#sidebar-followings-count").text("<%= current_user.followings.count %>");
