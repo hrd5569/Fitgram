@@ -58,3 +58,25 @@ ja:
       not_saved:
         one: "エラーが発生したため %{resource} は保存されませんでした:"
         other: "%{count} 件のエラーが発生したため %{resource} は保存されませんでした:"
+  activerecord:
+    models:
+      user: 'ユーザー'
+    attributes:
+      user:
+        name: '名前'
+        email: 'メールアドレス'
+        password: 'パスワード'
+        height: '身長'
+        weight: '体重'
+        age: '年齢'
+        gender: '性別'
+  errors:
+    messages:
+      not_saved:
+        one: "1件のエラーが発生したため %{resource} は保存されませんでした"
+        other: "%{count} 件のエラーが発生したため新規登録情報は保存されませんでした"
+      blank: 'を入力してください'
+      not_a_number: 'は数値で入力してください'
+      too_long: 'は%{count}文字以内で入力してください'
+      too_short: 'は%{count}文字以上で入力してください'
+      taken: 'はすでに存在します'
