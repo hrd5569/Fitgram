@@ -8,8 +8,12 @@
           <div class="alert alert-danger">
             <%= @post.errors.count %>件のエラーが発生しました:
             <ul>
-              <% @post.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
+              <% @post.errors.each do |attribute, message| %>
+                <% if attribute == :image %>
+                  <li><%= message %></li>
+                <% else %>
+                  <li><%= attribute.to_s.humanize %> <%= message %></li>
+                <% end %>
               <% end %>
             </ul>
           </div>
