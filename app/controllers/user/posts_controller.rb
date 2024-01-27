@@ -11,7 +11,7 @@ def create
 
   # 画像が選択されているかチェック
   if post_params[:image].blank?
-    @post.errors.add(:image, 'を選択してください')
+    @post.errors.add(:image, '画像を選択してください')
     render :new and return
   end
 
