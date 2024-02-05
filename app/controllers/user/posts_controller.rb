@@ -37,7 +37,7 @@ end
   def show
     @post = Post.find(params[:id])
     @new_comment = Comment.new
-    @comments = @post.comments.page(params[:page]).per(5)
+    @comments = @post.comments.page(params[:page]).per(10)
   end
 
   def destroy
