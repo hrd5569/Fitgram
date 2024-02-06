@@ -4,8 +4,8 @@
     <!-- 検索フォーム部分テンプレートの呼び出し -->
     <%= render 'user/posts/search_form' %>
 
-    <!-- サイドバー用のプロフィール -->
-    <div class="col-lg-3 col-md-4 sticky-top">
+    <!-- サイドバー用のプロフィール - スマートフォンでは非表示 -->
+    <div class="col-lg-3 col-md-4 sticky-top d-none d-md-block">
       <%= render 'layouts/sidebar', user: @user %>
     </div>
 
